@@ -25,16 +25,16 @@ $dataPoints = array(
 
 			<h1 class="content_q"><?php
 			if ($id_carrier == 23){
-				echo "PRACTICE QUESTION 1: “The Supreme Court has gone too far in liberalizing access to abortion." ;
+				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
 			}elseif ($id_carrier == 24) {
-				echo "PRACTICE QUESTION 2: “The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
-			}
-
+				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
+			}else{
 			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 			if($records){
-				echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
+				echo("Statement ".$current_seq.". ".''.$records['question_content'].'');
+				}
 			};
-			?></h1>
+      ?></h1>
 			<div class="clear"></div>
 		 </div>
 	</div>
@@ -45,10 +45,10 @@ $dataPoints = array(
   		<p class="question_text">
   			Which party do you predict will be more likely to agree with this statement?
   		</p>
-  		<button id="support" name="support" type="submit" value="support">
+  		<button id="support" name="party_demo" type="submit" value="Democrat_support">
   			<span class="italic">Democrats</span> will agree more
   		</button>
-  		<button id="oppose" name="oppose" type="submit" value="oppose">
+  		<button id="oppose" name="party_repu" type="submit" value="Republican_support">
   			<span class="italic">Republicans</span> will agree more
   </button>
   </form>

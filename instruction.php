@@ -46,14 +46,11 @@ function enableButton() {
        Please read the following instructions carefully before you begin.
        </p>
        <p>
-         This study tests group differences in political and cultural beliefs between the two main political parties in the U.S.
-         We are interested not only in how well members of a political party identify the current positions of their party, but also how well they identify the future positions that their party will take on issues that may soon become relevant.
-         Accordingly, we will ask you to respond to 22 questions about politics and culture.
+         The Political Prediction Game tests how well contestants can predict the views of Democrats and Republicans on questions about which the parties have not yet taken a stance. At the end of the study, the contestant with the most accurate predictions will win a $100 prize (to be divided equally in case of ties). Accordingly, we will show you 22 statements and you have to predict which party is more likely to agree. We will also ask you whether you agree or disagree with the statement. You will also have the option to see how other participants so far have responded to the question.
+
        </p>
       <p>
-        Please note that once you submit your answers and move onto the next item,
-        you will not be able to go back and change your responses.
-        Please do not press the back button on your browser, or you will risk causing your session to end prematurely, which will prevent you from being paid for completing the test.
+        Please note that once you submit your answers and move onto the next item, you will not be able to go back and change your responses. Please do not press the back button on your browser, or you will risk causing your session to end prematurely, which will prevent you from being paid for completing the test.
       </p>
    <br><br>
 

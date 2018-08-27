@@ -4,7 +4,7 @@ include('test2.php');
 
 if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || ($support_num_of_repub_percent != 0 || $oppose_num_of_repub_percent != 0)){
 		$dataPoints1 = array(
-			array("label"=> "Democrats", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent ),
+			array("label"=> "Democrats", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent),
 			array("label"=> "Republicans", "y"=> null),
 		);
 		$dataPoints2 = array(
@@ -51,17 +51,17 @@ if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || (
 <div class="index-banner1">
 	<div class="header-top">
 		<div class="wrap">
-      <h1 class="content_q"><?php
-      if ($id_carrier == 23){
-        echo "PRACTICE QUESTION 1: “The Supreme Court has gone too far in liberalizing access to abortion." ;
-      }elseif ($id_carrier == 24) {
-        echo "PRACTICE QUESTION 2: “The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
-      }
-
-      $records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
-      if($records){
-        echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
-      };
+			<h1 class="content_q"><?php
+			if ($id_carrier == 23){
+				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
+			}elseif ($id_carrier == 24) {
+				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
+			}else{
+			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
+			if($records){
+				echo("Statement ".$current_seq.". ".''.$records['question_content'].'');
+				}
+			};
       ?></h1>
 			<h2> </h2>
 			<div class="clear_chart"></div>
@@ -76,7 +76,8 @@ window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
 	title: {
 		margin:20,
-		text: "So far, <?php echo ($all_demo_in_world); ?> Democrats and <?php echo ($all_republican_in_world); ?> Republicans have responded to this question. Here are their responses:"
+		text: "Percent who agree, by political party",
+		// text: "So far, <?php echo ($all_demo_in_world); ?> Democrats and <?php echo ($all_republican_in_world); ?> Republicans have responded to this question. Here are their responses:"
 	},
 	theme: "light2",
 	animationEnabled: true,
@@ -148,7 +149,7 @@ chart.render();
 <body>
 
 
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<div id="chartContainer" style="height: 320px; width: 100%;"></div>
 <script src="script/canvasjs.min.js"></script>
 
 <div class="wrapper5">
@@ -156,11 +157,11 @@ chart.render();
     <p class="question_text">
       Which party do you predict will be more likely to agree with this statement?
     </p>
-    <button id="support" name="party_support" type="submit" value="support">
-      <span class="italic">Democrats</span> will agree more
-    </button>
-    <button id="oppose" name="party_oppose" type="submit" value="oppose">
+    <button id="support" name="party_repu" type="submit" value="Democrat_support">
       <span class="italic">Republicans</span> will agree more
+    </button>
+    <button id="oppose" name="party_demo" type="submit" value="Republican_support">
+      <span class="italic">Democrats</span> will agree more
 </button>
 </form>
 </div>

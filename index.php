@@ -30,7 +30,8 @@
 
         echo '
         <div class="form">
-        <h2>Login</h2>
+        <p>You must log in using your MTURK user ID in order to participate:
+        </p>
         <form action="consent0.php" method="post">
         <label>MTURK USER ID</label>
         <input type="text" name="mTurk_code" placeholder="MTURK ID" required />

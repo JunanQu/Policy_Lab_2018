@@ -145,17 +145,13 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="script/canvasjs.min.js"></script>
 
-<div class="wrapper2">
+<div class="wrapper3">
 <form action="newChart2.php" method="post">
 		<p class="question_text">
-			Which party do you predict will be more likely to agree with this statement?
+			Please click the link below that best expresses your response:
 		</p>
-		<button id="support" name="support" type="submit" value="support">
-			<span class="italic">Democrats</span> will agree more
-		</button>
-		<button id="oppose" name="oppose" type="submit" value="oppose">
-			<span class="italic">Republicans</span> will agree more
-</button>
+		<button name="support" type="submit" value="support">Agree</button>
+		<button  name="oppose" type="submit" value="oppose">Disagree</button>
 </form>
 </div>
 </body>

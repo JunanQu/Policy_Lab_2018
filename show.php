@@ -36,7 +36,7 @@ include('test2.php');
           <option value="" disabled selected>Select your SQL</option>
           <option value="SELECT * FROM user">All User</option>
           <option value="SELECT * FROM questions">All Question</option>
-          <option value="SELECT * FROM user_question_world_answer WHERE world_id LIKE 1">Answers in the independent world 2</option>
+          <option value="SELECT * FROM user_question_world_answer WHERE world_id LIKE 1">Answers in the independent world</option>
           <option value="SELECT * FROM user_question_world_answer WHERE world_id != 1">Answers in other world</option>
         </select>
           <button name="sql" type="submit" value="sql">Execute</button>

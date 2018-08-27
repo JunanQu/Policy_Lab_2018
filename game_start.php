@@ -33,7 +33,8 @@
           echo'<form action="practice_1.php" method="post">';
         }
       ?>
-      <label>Before we start the game, we will give everyone two practice questions that won’t count toward winning the game.</label>
+      <label>Now that you have had a chance to practice, we will start the game.</label>
+      <label>Click “CONTINUE” when you are ready to begin.</label>
       <button id="continue_button" name="continue" type="submit" value="continue">Continue</button>
       </form>
 

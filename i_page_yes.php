@@ -51,17 +51,17 @@ if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || (
 <div class="index-banner1">
 	<div class="header-top">
 		<div class="wrap">
-      <h1 class="content_q"><?php
-      if ($id_carrier == 23){
-        echo "PRACTICE QUESTION 1: “The Supreme Court has gone too far in liberalizing access to abortion." ;
-      }elseif ($id_carrier == 24) {
-        echo "PRACTICE QUESTION 2: “The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
-      }
-
-      $records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
-      if($records){
-        echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
-      };
+			<h1 class="content_q"><?php
+			if ($id_carrier == 23){
+				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
+			}elseif ($id_carrier == 24) {
+				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
+			}else{
+			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
+			if($records){
+				echo("Statement ".$current_seq.". ".''.$records['question_content'].'');
+				}
+			};
       ?></h1>
 			<h2> </h2>
 			<div class="clear_chart"></div>
@@ -76,7 +76,8 @@ window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
 	title: {
 		margin:20,
-		text: "So far, <?php echo ($all_demo_in_world); ?> Democrats and <?php echo ($all_republican_in_world); ?> Republicans have responded to this question. Here are their responses:"
+		text: "Percent who agree, by political party",
+		// text: "So far, <?php echo ($all_demo_in_world); ?> Democrats and <?php echo ($all_republican_in_world); ?> Republicans have responded to this question. Here are their responses:"
 	},
 	theme: "light2",
 	animationEnabled: true,
@@ -148,23 +149,31 @@ chart.render();
 <body>
 
 
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<div id="chartContainer" style="height: 320px; width: 100%;"></div>
 <script src="script/canvasjs.min.js"></script>
 
 <div class="wrapper5">
-<form action="practice_1.php" method="post">
+	<?php
+		if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+		echo'<form action="no.php" method="post">';
+	}else if($id_carrier == 24){
+		echo'<form action="game_start.php" method="post">';
+	}else{
+			echo'<form action="practice_1.php" method="post">';
+		}
+	?>
     <p class="question_text">
       Next, we would like to know your own individual opinion.
     </p>
     <p class="question_text">
       As a <?php echo "$user_political_id" ?>, would you be more likely to agree or disagree with this statement?
     </p>
-    <button id="support" name="support" type="submit" value="support">
+    <button id="support" name="oppose" type="submit" value="oppose">
       I <span class="italic">disagree</span> with this statement.
     </button>
-    <button id="oppose" name="oppose" type="submit" value="oppose">
+    <button id="oppose" name="support" type="submit" value="support">
       I <span class="italic">agree</span> with this statement.
-</button>
+		</button>
 </form>
 </div>
 </body>

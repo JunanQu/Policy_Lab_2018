@@ -24,16 +24,16 @@ $dataPoints = array(
 		<div class="wrap">
 
       <h1 class="content_q"><?php
-      if ($id_carrier == 23){
-        echo "PRACTICE QUESTION 1: “The Supreme Court has gone too far in liberalizing access to abortion." ;
-      }elseif ($id_carrier == 24) {
-        echo "PRACTICE QUESTION 2: “The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
-      }
-
-      $records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
-      if($records){
-        echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
-      };
+			if ($id_carrier == 23){
+				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
+			}elseif ($id_carrier == 24) {
+				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
+			}else{
+			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
+			if($records){
+				echo("Statement ".$current_seq.". ".''.$records['question_content'].'');
+				}
+			};
       ?></h1>
 			<div class="clear"></div>
 		 </div>
@@ -41,17 +41,25 @@ $dataPoints = array(
 </div>
 <body>
   <div class="wrapper4">
-    <form action="practice_1.php" method="post">
+		<?php
+			if (($support_num_of_demo_percent2 == 0 && $oppose_num_of_demo_percent2 == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+			echo'<form action="no.php" method="post">';
+		}else if($id_carrier == 24){
+			echo'<form action="game_start.php" method="post">';
+		}else{
+				echo'<form action="practice_1.php" method="post">';
+			}
+		?>
         <p class="question_text">
           Next, we would like to know your own individual opinion.
         </p>
         <p class="question_text">
           As a <?php echo "$user_political_id" ?>, would you be more likely to agree or disagree with this statement?
         </p>
-        <button id="support" name="support" type="submit" value="support">
+        <button id="support" name="oppose" type="submit" value="oppose">
           I <span class="italic">disagree</span> with this statement.
         </button>
-        <button id="oppose" name="oppose" type="submit" value="oppose">
+        <button id="oppose" name="support" type="submit" value="support">
           I <span class="italic">agree</span> with this statement.
     </button>
     </form>
