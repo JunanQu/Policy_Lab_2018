@@ -108,7 +108,6 @@
       $current_user = filter_input(INPUT_POST, 'mTurk_code', FILTER_SANITIZE_STRING);
       if (isset($_POST["login"])) {
           $user_mTurk_code = filter_input(INPUT_POST, 'mTurk_code', FILTER_SANITIZE_STRING);
-          // $user_political = $_POST['political_stand'];
           $full_list_of_users = exec_sql_query($myPDO, "SELECT mturk FROM user")->fetchAll();
           $reorganized_users=array();
           foreach ($full_list_of_users as $a){
@@ -164,13 +163,9 @@
 
         $A = explode(",",$records["question_id_sequence"]);
         $B = count($records2);
-        // if ($B > 23){
-        //   setcookie("session", $session['session'], time()-3600);
-        //   header('Location: thanks.php');
-        // }else{
+
         $C = $A[$B];
-        // var_dump($A,$B);
-        // };
+
         exec_sql_query($myPDO, "UPDATE user SET current_question = '". $C. "' WHERE user.mturk = '". $current_user. "'");
         if($records){
         return $id_carrier=$C;
@@ -255,7 +250,6 @@
         if (isset($_POST['support'])){
 
           $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-          // ($current_seq[0]['sequential_number']);
           $current_seq = $current_seq[0]['sequential_number'] + 1;
           exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
 
@@ -272,7 +266,6 @@
         if (isset($_POST['oppose'])){
 
           $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-          // ($current_seq[0]['sequential_number']);
           $current_seq = $current_seq[0]['sequential_number'] + 1;
           exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
 
@@ -452,4 +445,7 @@
         echo '<h2>You are spammer! </h2>';
       }
         }
+
+
+
 ?>
