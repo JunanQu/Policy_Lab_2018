@@ -48,6 +48,8 @@ if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || (
 <html>
 <head>
 <link href="styles/all.css" rel="stylesheet" type="text/css"  />
+<script src="script/back_button.js"></script>
+
 <div class="index-banner1">
 	<div class="header-top">
 		<div class="wrap">

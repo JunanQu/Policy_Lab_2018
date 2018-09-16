@@ -235,16 +235,9 @@ body{
 }
 
 
-#support{
-	float: right;
-	width: 30%;
-	margin-right: 10%;
-}
 
-#oppose{
-	float: left;
-	width: 30%;
-	margin-left: 10%;
+#page_yes{
+	/* float: right; */
 }
 
 #no{
@@ -270,4 +263,23 @@ font-size: 20px;
 margin-top: 3%;
 margin-bottom: 7%;
 
+}
+
+#support{
+	float: right;
+	/* width: 30%; */
+	text-align: center;
+	margin-left: 5%;
+	width: 30%;
+	margin-right: 10%;
+	/* background-color: red; */
+}
+
+#oppose{
+	float: left;
+	/* width: 30%; */
+	width: 30%;
+	text-align: center;
+	margin-left: 10%;
+	/* background-color: blue; */
 }

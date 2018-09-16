@@ -10,6 +10,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="styles/all.css" media="all" />
 
+  <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+  <script src="script/jquery.backDetect.js"></script>
+  <script src="script/back_button.js"></script>
+
   <title>Social Dynamics Lab-Policy Lab Pilot Testing</title>
 
   </head>
@@ -28,9 +32,9 @@
   <div class="wrapper3">
       <?php
         if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
-        echo'<form action="no.php" method="post">';
+        echo'<form action="yes.php?preference=1" method="post">';
         }else{
-          echo'<form action="practice_1.php" method="post">';
+          echo'<form action="yes.php?preference=1" method="post">';
         }
       ?>
       <label>Before we start the game, we will give everyone two practice questions that won’t count toward winning the game.</label>

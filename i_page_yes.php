@@ -1,26 +1,124 @@
 <?php
 // include('includes/header.php');
 include('test2.php');
+$preference = $_GET["preference"];
+exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
+if($num_of_users == 1){
+	$dataPoints1 = array(
+		array("label"=> null, "y"=> null, "x"=>null ),
+		array("label"=> null, "y"=> null),
+	);
+	$dataPoints2 = array(
+		array("label"=> null, "y"=> null, "x"=>null),
+		array("label"=> null, "y"=> null),
+	);
 
-if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || ($support_num_of_repub_percent != 0 || $oppose_num_of_repub_percent != 0)){
+	$dataPoints3 = array(
+		array("label"=> null, "y"=> null),
+		array("label"=> null, "y"=> null, "x"=>null)
+	);
+
+	$dataPoints4 = array(
+		array("label"=> null, "y"=> null),
+		array("label"=> null, "y"=> null, "x"=>null)
+	);
+}else if ($id_carrier == 23){
+
+
+	$dataPoints1 = array(
+		array("label"=> "Democrats: 12% Agree", "y"=> 12, "z"=>$support_num_of_demo_percent),
+		array("label"=> "Republicans: 91% Agree", "y"=> null),
+	);
+	$dataPoints2 = array(
+		array("label"=> "Democrats: 12% Agree", "y"=> 88, "z"=>$oppose_num_of_demo_percent),
+		array("label"=> "Republicans: 91% Agree", "y"=> null),
+	);
+
+	$dataPoints3 = array(
+		array("label"=> "Democrats: 12% Agree", "y"=> null),
+		array("label"=> "Republicans: 91% Agree", "y"=> 91, "z"=>$support_num_of_repub_percent)
+	);
+
+	$dataPoints4 = array(
+		array("label"=> "Democrats: 12% Agree", "y"=> null),
+		array("label"=> "Republicans: 91% Agree", "y"=> 9, "z"=>$oppose_num_of_repub_percent)
+	);
+}else if($id_carrier == 24){
+	$dataPoints1 = array(
+		array("label"=> "Democrats: 91% Agree", "y"=> 91, "z"=>$support_num_of_demo_percent),
+		array("label"=> "Republicans: 12% Agree", "y"=> null),
+	);
+	$dataPoints2 = array(
+		array("label"=> "Democrats: 91% Agree", "y"=> 9, "z"=>$oppose_num_of_demo_percent),
+		array("label"=> "Republicans: 12% Agree", "y"=> null),
+	);
+
+	$dataPoints3 = array(
+		array("label"=> "Democrats: 91% Agree", "y"=> null),
+		array("label"=> "Republicans: 12% Agree", "y"=> 12, "z"=>$support_num_of_repub_percent)
+	);
+
+	$dataPoints4 = array(
+		array("label"=> "Democrats: 91% Agree", "y"=> null),
+		array("label"=> "Republicans: 12% Agree", "y"=> 88, "z"=>$oppose_num_of_repub_percent)
+	);
+}else if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) && ($support_num_of_repub_percent != 0 || $oppose_num_of_repub_percent != 0)){
 		$dataPoints1 = array(
-			array("label"=> "Democrats", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent ),
-			array("label"=> "Republicans", "y"=> null),
+			array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent),
+			array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> null),
 		);
 		$dataPoints2 = array(
-			array("label"=> "Democrats", "y"=> $oppose_rate_of_demo_percent, "z"=>$oppose_num_of_demo_percent),
-			array("label"=> "Republicans", "y"=> null),
+			array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> $oppose_rate_of_demo_percent, "z"=>$oppose_num_of_demo_percent),
+			array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> null),
 		);
 
 		$dataPoints3 = array(
-			array("label"=> "Democrats", "y"=> null),
-			array("label"=> "Republicans", "y"=> $support_rate_of_repub_percent, "z"=>$support_num_of_repub_percent)
+			array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> null),
+			array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> $support_rate_of_repub_percent, "z"=>$support_num_of_repub_percent)
 		);
 
 		$dataPoints4 = array(
-			array("label"=> "Democrats", "y"=> null),
-			array("label"=> "Republicans", "y"=> $oppose_rate_of_repub_percent, "z"=>$oppose_num_of_repub_percent)
+			array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> null),
+			array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> $oppose_rate_of_repub_percent, "z"=>$oppose_num_of_repub_percent)
 		);
+}else if(($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent != 0 || $oppose_num_of_repub_percent != 0)){
+	$dataPoints1 = array(
+		array("label"=> " ", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent),
+		array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> null),
+	);
+	$dataPoints2 = array(
+		array("label"=> " ", "y"=> $oppose_rate_of_demo_percent, "z"=>$oppose_num_of_demo_percent),
+		array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> null),
+	);
+
+	$dataPoints3 = array(
+		array("label"=> " ", "y"=> null),
+		array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> $support_rate_of_repub_percent, "z"=>$support_num_of_repub_percent)
+	);
+
+	$dataPoints4 = array(
+		array("label"=> " ", "y"=> null),
+		array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> $oppose_rate_of_repub_percent, "z"=>$oppose_num_of_repub_percent)
+	);
+}else if(($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0) && ($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0)){
+	$dataPoints1 = array(
+		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent),
+		array("label"=> " ", "y"=> null),
+	);
+	$dataPoints2 = array(
+		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> $oppose_rate_of_demo_percent, "z"=>$oppose_num_of_demo_percent),
+		array("label"=> " ", "y"=> null),
+	);
+
+	$dataPoints3 = array(
+		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> null),
+		array("label"=> " ", "y"=> $support_rate_of_repub_percent, "z"=>$support_num_of_repub_percent)
+	);
+
+	$dataPoints4 = array(
+		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> null),
+		array("label"=> " ", "y"=> $oppose_rate_of_repub_percent, "z"=>$oppose_num_of_repub_percent)
+	);
 }else{
 	$dataPoints1 = array(
 		array("label"=> null, "y"=> null, "x"=>null ),
@@ -41,8 +139,6 @@ if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || (
 		array("label"=> null, "y"=> null, "x"=>null)
 	);
 }
-
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -54,12 +150,12 @@ if (($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0) || (
 			<h1 class="content_q"><?php
 			if ($id_carrier == 23){
 				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
-			}elseif ($id_carrier == 24) {
+			}else if ($id_carrier == 24) {
 				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
 			}else{
 			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 			if($records){
-				echo("Statement ".$current_seq.". ".''.$records['question_content'].'');
+				echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
 				}
 			};
       ?></h1>
@@ -76,7 +172,19 @@ window.onload = function () {
 var chart = new CanvasJS.Chart("chartContainer", {
 	title: {
 		margin:20,
-		text: "Percent who agree, by political party",
+		<?php
+		if(($support_num_of_demo_percent == 0 || $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent != 0 || $oppose_num_of_repub_percent != 0)){
+			$oppo_stand = "Republican";
+		}else{
+			$oppo_stand = "Democratic";
+		}
+		if($id_carrier == 23 || $id_carrier == 24){
+			echo "text: 'Percent who agree, by political party',";
+		}else if ($all_demo_in_world == 0 OR $all_republican_in_world == 0){
+			echo "text: 'So far, all the participants have been from the ".$oppo_stand." Party'";
+		}else{
+			echo "text: 'Percent who agree, by political party',";
+		}?>
 		// text: "So far, <?php echo ($all_demo_in_world); ?> Democrats and <?php echo ($all_republican_in_world); ?> Republicans have responded to this question. Here are their responses:"
 	},
 	theme: "light2",
@@ -100,7 +208,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
 			indexLabelFontSize: 20,
-			indexLabelFontColor: "white",
+			indexLabelFontColor: "black",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -123,7 +231,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
 			indexLabelFontSize: 20,
-			indexLabelFontColor: "white",
+			indexLabelFontColor: "black",
 			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -150,28 +258,43 @@ chart.render();
 
 
 <div id="chartContainer" style="height: 320px; width: 100%;"></div>
+
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+<script src="script/jquery.backDetect.js"></script>
+<script src="script/back_button.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#show1").delay(3000).fadeIn();
+    $("#support").delay(3000).fadeIn();
+    $("#oppose").delay(3000).fadeIn();
+});
+</script>
+
 <script src="script/canvasjs.min.js"></script>
 
 <div class="wrapper5">
 	<?php
-		if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
-		echo'<form action="no.php" method="post">';
-	}else if($id_carrier == 24){
+	if($id_carrier == 24){
 		echo'<form action="game_start.php" method="post">';
 	}else{
-			echo'<form action="practice_1.php" method="post">';
-		}
+		echo '<form action="yes.php?preference=1" method="post">';
+	}
+	// else{
+	// 	echo'<form action="practice_1.php" method="post">';
+	// }
 	?>
     <p class="question_text">
       Next, we would like to know your own individual opinion.
     </p>
-    <p class="question_text">
+    <p class="question_text" style="display: none;" id="show1">
       As a <?php echo "$user_political_id" ?>, would you be more likely to agree or disagree with this statement?
     </p>
-    <button id="support" name="oppose" type="submit" value="oppose">
+    <button style="display: none;" id="support" name="oppose" type="submit" value="oppose">
       I <span class="italic">disagree</span> with this statement.
     </button>
-    <button id="oppose" name="support" type="submit" value="support">
+    <button  style="display: none;" id="oppose" name="support" type="submit" value="support">
       I <span class="italic">agree</span> with this statement.
 		</button>
 </form>

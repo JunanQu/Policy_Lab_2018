@@ -8,6 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="styles/style2.css" media="all" />
 
+  <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+  <script src="script/jquery.backDetect.js"></script>
+  <script src="script/back_button.js"></script>
 
   <!-- function for "clicking checkbox to enable button" -->
 <script type="text/javascript">
@@ -56,7 +59,7 @@ function enableButton() {
          <p>
          If you agree to take part in this study,
          we will ask you to indicate whether you agree or disagree with 22 statements in an anonymous setting.
-         This should take less than 10 minutes, for which you will be paid $1.00.
+         This should take less than 15 minutes, for which you will be paid $2.00.
          </p>
          <p>
           Taking part in this study is completely voluntary.

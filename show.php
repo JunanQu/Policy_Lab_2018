@@ -9,6 +9,7 @@ include('test2.php');
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="styles/all.css" media="all" />
+  <script src="script/back_button.js"></script>
 
   <title>Social Dynamics Lab-Policy Lab Pilot Testing</title>
 

@@ -9,6 +9,10 @@
   <link rel="stylesheet" type="text/css" href="styles/style2.css" media="all" />
 
 
+  <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+  <script src="script/jquery.backDetect.js"></script>
+  <script src="script/back_button.js"></script>
+
   <!-- function for "clicking checkbox to enable button" -->
 
   <script type="text/javascript">
@@ -46,31 +50,15 @@ function enableButton() {
          Please read the following instructions carefully before you begin.
          </p>
         <p>
-          This study tests group differences in political and cultural beliefs between the two main political parties in the U.S.
-          We are interested not only in how well members of a political party identify the current positions of their party,
-          but also how well they identify the future positions that their party will take on issues that may soon become relevant.
-
+          The Political Prediction Game tests how well contestants can predict the views of Democrats and Republicans on questions about which the parties have not yet taken a stance. At the end of the study, the contestant with the most accurate predictions will win a $100 prize (to be divided equally in case of ties). Accordingly, we will show you 22 statements and you have to predict which party is more likely to agree. We will also ask you whether you agree or disagree with the statement. You will also see how other participants so far have responded to the question.
         </p>
 
         <p>
-          Accordingly, this study asks participants from each of the political parties to respond to 22 questions about politics and culture, and before giving your response,
-          you will have the opportunity to consider how previous participants from each of the two parties have responded.
+          Please note that once you submit your answers and move onto the next item, you will not be able to go back and change your responses. Please do not press the back button on your browser, or you will risk causing your session to end prematurely, which will prevent you from being paid for completing the test.
         </p>
-
-        <p>
-        Please note that once you submit your answers and move onto the next item, you will not be able to go back and change your responses. Please do not press the back button on your browser, or you will risk causing your session to end prematurely, which will prevent you from being paid for completing the test.      </p>
-       <br><br>
+        <br><br>
 
 
-
-       <?php
-
-       // if ( $current_user_world_id == 1 ){
-       // echo'<form action="nochart.php" method="post">';
-       //  }else{
-       // echo'<form action="newChart2.php" method="post">';
-       //  }
-       ?>
        <form action="political_id.php" method="post">
        <p><input type="checkbox" id="myCheck" onclick="javascript:enableButton();" >
          I have carefully read the instructions and am ready to continue with the test.<br></p>
