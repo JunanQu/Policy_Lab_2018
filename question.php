@@ -258,20 +258,21 @@ chart.render();
 	box-sizing: border-box;
 }
 
-.reason button {
+.reason .reason_button {
 	border: none;
 	padding: 10px;
 	font-size: 14px;
 	background: #e0e0e0;
 	flex: 1;
+	text-transform: uppercase;
 	border-radius: 3px;
 }
 
-.reason.enabled button {
+.reason.enabled .reason_button {
 	cursor: pointer;
 }
 
-.reason.enabled button:hover {
+.reason.enabled .reason_button:hover {
 	background: gray;
 }
 
@@ -320,23 +321,20 @@ chart.render();
 			<!-- TODO(JunanQu): Figure out action attribute for form. -->
 			<form method=POST>
 				<div class="reason">
-					<button class="reason_button" value="ideology">
-						IDEOLOGY
-					</button>
+					<input type="submit" class="reason_button" value="ideology" disabled>
+					</input>
 					<div class="desc">Because the issue involves [D/R] party values
 						(liberal vs. conservative).</div>
 				</div>
 				<div class="reason">
-					<button class="reason_button" value="history">
-						HISTORY
-					</button>
+					<input type="submit" class="reason_button" value="history" disabled>
+					</input>
 					<div class="desc">Because the issue involves historical [D/R] party
 						positions.</div>
 				</div>
 				<div class="reason">
-					<button class="reason_button" value="popularity">
-						POPULARITY
-					</button>
+					<input type="submit" class="reason_button" value="popularity" disabled>
+					</input>
 					<div class="desc">Because the issue is important to the [D/R]
 						party’s core political base.</div>
 				</div>
@@ -358,6 +356,7 @@ $(document).ready(function() {
 function enableQuestion() {
 	$(".reasons_question").fadeTo(500, 1);
 	$(".reason").addClass('enabled');
+	$(':input[type="submit"]').prop('disabled', false);
 }
 </script>
 <script src="script/jquery.backDetect.js"></script>
