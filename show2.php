@@ -1,7 +1,7 @@
 <?php
 
 include('test2.php');
-
+var_dump(random_question_order_generator());
 if (isset($_POST['sql'])) {
   $user_sql = $_POST['sql_input'];
   var_dump($user_sql);

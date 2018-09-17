@@ -45,12 +45,13 @@
     function random_question_order_generator(){
       $array = [];
 
-      while( count($array) < 20 ){
-      $rand = mt_rand(1,20);
-      $array[$rand] = $rand;
+      while( count($array) < 15 ){
+        $rand = mt_rand(1,20);
+        $array[$rand] = $rand;
       }
-
-      $res = array_splice($array,0,0,23)+array_splice($array, 1, 0, 24)+array_splice($array, 6, 0, 21) + array_splice($array, 16, 0, 22) + array_splice($array, 23, 0, 25);
+      $random_PQ = rand(23,24);
+      $res = array_splice($array,0,0,$random_PQ)+array_splice($array, 6, 0, 21) + array_splice($array, 13, 0, 22);
+      array_push($array, 25);
 
       return $array;
     }
@@ -429,7 +430,7 @@
     // echo '<h2>You are spammer ! Get the @$%K out</h2>';
     //   exit;
     // }
-    $email;$comment;$captcha;
+      $email;$comment;$captcha;
       if(isset($_POST['g-recaptcha-response'])){
         $captcha=$_POST['g-recaptcha-response'];
       if(!$captcha){
@@ -443,9 +444,20 @@
       $responseKeys = json_decode($response,true);
       if(intval($responseKeys["success"]) !== 1) {
         echo '<h2>You are spammer! </h2>';
-      }
         }
+      }
 
-
+      if(isset($_POST['ideology'])){
+        $reason = "ideology";
+        exec_sql_query($myPDO, "UPDATE user_question_world_answer SET reason = '$reason' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
+      }
+      if(isset($_POST['history'])){
+        $reason = "history";
+        exec_sql_query($myPDO, "UPDATE user_question_world_answer SET reason = '$reason' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
+      }
+      if(isset($_POST['popularity'])){
+        $reason = "popularity";
+        exec_sql_query($myPDO, "UPDATE user_question_world_answer SET reason = '$reason' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
+      }
 
 ?>
