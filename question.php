@@ -258,20 +258,19 @@ chart.render();
 	box-sizing: border-box;
 }
 
-.reason button {
+.reason .reason_button {
 	border: none;
 	padding: 10px;
 	font-size: 14px;
 	background: #e0e0e0;
 	flex: 1;
+	text-transform: uppercase;
 	border-radius: 3px;
 }
 
-.reason.enabled button {
 	cursor: pointer;
 }
 
-.reason.enabled button:hover {
 	background: gray;
 }
 
@@ -320,13 +319,9 @@ chart.render();
 			<!-- TODO(JunanQu): Figure out action attribute for form. -->
 			<form action="yes.php?preference=1" method=POST>
 				<div class="reason">
-					<button class="reason_button" value="ideology">
-						IDEOLOGY
-					</button>
-					<div class="desc">Because the issue involves <?php echo "$user_political_id" ?>party values
-						(liberal vs. conservative).</div>
 				</div>
 				<div class="reason">
+<<<<<<< HEAD
 					<button class="reason_button" value="history">
 						HISTORY
 					</button>
@@ -338,6 +333,8 @@ chart.render();
 						POPULARITY
 					</button>
 					<div class="desc">Because the issue is important to the <?php echo "$user_political_id" ?>
+=======
+>>>>>>> 3adab7c418016c1ae2b217ce7f519a8c6d9e14b4
 						party’s core political base.</div>
 				</div>
 			</form>
@@ -358,6 +355,7 @@ $(document).ready(function() {
 function enableQuestion() {
 	$(".reasons_question").fadeTo(500, 1);
 	$(".reason").addClass('enabled');
+	$(':input[type="submit"]').prop('disabled', false);
 }
 </script>
 <script src="script/jquery.backDetect.js"></script>
