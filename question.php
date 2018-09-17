@@ -195,7 +195,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	interactivityEnabled: false,
 	axisX: {
-	labelFontSize: 30
+	labelFontSize: 15
 	},
 	axisY: {
 		suffix: "%"
@@ -207,7 +207,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Democrats Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 10,
 			indexLabelFontColor: "black",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
@@ -219,31 +219,26 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 10,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 		},{
-			color: "red",
+			color: "rgb(191, 40, 0)",
 			type: "stackedColumn100",
 			name: "Republicans Who Support",
-			// showInLegend: true,
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 10,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
 			color: "#FFCCBB",
 			type: "stackedColumn100",
 			name: "Republicans Who Oppose",
-			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 10,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}
 	]
@@ -257,7 +252,7 @@ chart.render();
 <body>
 
 
-<div id="chartContainer" style="height: 350px; width: 100%; float: right;"></div>
+<div id="chartContainer" style="height: 350px; width: 40%; float: right;"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
