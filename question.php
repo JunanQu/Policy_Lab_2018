@@ -313,18 +313,19 @@ chart.render();
 		<p><b>Please take 10 seconds to read the statement carefully and think about the
 		past views of previous participants.</b></p>
 
-		<p>Based on the bar chart to the right, pick the reason [D/R] participants
+		<p>Based on the bar chart to the right, pick the reason <?php echo "$user_political_id" ?> participants
 		might be more likely to agree or disagree with this statement, compared to
 		the other party:</p>
 
 		<div class="reasons_question">
 			<!-- TODO(JunanQu): Figure out action attribute for form. -->
-			<form method=POST>
+			<form action="yes.php?preference=1" method=POST>
 				<div class="reason">
 					<input type="submit" class="reason_button" value="ideology" disabled>
 					</input>
-					<div class="desc">Because the issue involves [D/R] party values
-						(liberal vs. conservative).</div>
+					<div class="desc">Because the issue involves
+						<?php echo "$user_political_id" ?>party values (liberal
+						vs. conservative).</div>
 				</div>
 				<div class="reason">
 					<input type="submit" class="reason_button" value="history" disabled>
