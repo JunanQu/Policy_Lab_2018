@@ -330,14 +330,14 @@ chart.render();
 					<button class="reason_button" value="history">
 						HISTORY
 					</button>
-					<div class="desc">Because the issue involves historical [D/R] party
+					<div class="desc">Because the issue involves historical <?php echo "$user_political_id" ?> party
 						positions.</div>
 				</div>
 				<div class="reason">
 					<button class="reason_button" value="popularity">
 						POPULARITY
 					</button>
-					<div class="desc">Because the issue is important to the [D/R]
+					<div class="desc">Because the issue is important to the <?php echo "$user_political_id" ?>
 						party’s core political base.</div>
 				</div>
 			</form>
