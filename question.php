@@ -143,29 +143,7 @@ if($num_of_users == 1){
 <!DOCTYPE HTML>
 <html>
 <head>
-<link href="styles/all.css" rel="stylesheet" type="text/css"  />
-<div class="index-banner1">
-	<div class="header-top">
-		<div class="wrap">
-			<h1 class="content_q"><?php
-			if ($id_carrier == 23){
-				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
-			}else if ($id_carrier == 24) {
-				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
-			}else{
-			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
-			if($records){
-				echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
-				}
-			};
-      ?></h1>
-			<h2> </h2>
-			<div class="clear_chart"></div>
-		 </div>
-	</div>
-</div>
-
-
+<link href="styles/all.css" rel="stylesheet" type="text/css"/>
 <script>
 window.onload = function () {
 
@@ -253,26 +231,139 @@ chart.render();
 
 }
 </script>
+<style>
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.box {
+	width: 50vw;
+	box-sizing: border-box;
+}
+.box.left p {
+	font-size: 16px;
+}
+.box p {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.reasons_question {
+	margin-top: 20px;
+	opacity: 0.2;
+}
+
+.reason {
+	padding: 10px;
+	margin: 10px;
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+}
+
+.reason button {
+	border: none;
+	padding: 10px;
+	font-size: 14px;
+	background: #e0e0e0;
+	flex: 1;
+	border-radius: 3px;
+}
+
+.reason.enabled button {
+	cursor: pointer;
+}
+
+.reason.enabled button:hover {
+	background: gray;
+}
+
+.reason .desc {
+	flex: 3;
+	margin-left: 10px;
+}
+</style>
 </head>
 <body>
+	<!-- ================ BANNER ================ -->
+	<div class="index-banner1">
+		<div class="header-top">
+			<div class="wrap">
+				<h1 class="content_q"><?php
+				if ($id_carrier == 23) {
+					echo "PRACTICE QUESTION 1: The Supreme Court has gone too far" +
+						" in liberalizing access to abortion.";
+				} else if ($id_carrier == 24) {
+					echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare')" +
+						" should be strengthened, not weakened or abolished." ;
+				} else {
+					$records = exec_sql_query($myPDO,
+							"SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
+					if ($records) {
+						echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
+					}
+				};
+	      ?></h1>
+				<h2>{{QUESTION}}?</h2>
+				<div class="clear_chart"></div>
+			 </div>
+		</div>
+	</div>
 
+	<!-- ================ BODY ================ -->
+	<div class="box left">
+		<p><b>Please take 10 seconds to read the statement carefully and think about the
+		past views of previous participants.</b></p>
 
-<div id="chartContainer" style="height: 350px; width: 100%; float: right;"></div>
+		<p>Based on the bar chart to the right, pick the reason [D/R] participants
+		might be more likely to agree or disagree with this statement, compared to
+		the other party:</p>
 
+		<div class="reasons_question">
+			<div class="reason">
+				<button class="reason_button" value="ideology">
+					IDEOLOGY
+				</button>
+				<div class="desc">Because the issue involves [D/R] party values
+					(liberal vs. conservative).</div>
+			</div>
+			<div class="reason">
+				<button class="reason_button" value="history">
+					HISTORY
+				</button>
+				<div class="desc">Because the issue involves historical [D/R] party
+					positions.</div>
+			</div>
+			<div class="reason">
+				<button class="reason_button" value="popularity">
+					POPULARITY
+				</button>
+				<div class="desc">Because the issue is important to the [D/R]
+					party’s core political base.</div>
+			</div>
+		</div>
+	</div>
+	<div id="chartContainer" class="box right">
+	</div>
+</body>
+
+<!-- ================ IMPORTS ================ -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-    $("#page_yes").delay(3000).fadeIn();
+$(document).ready(function() {
+	console.log('Ready!');
+    setTimeout(enableQuestion, 5000);
 });
+
+function enableQuestion() {
+	$(".reasons_question").fadeTo(500, 1);
+	$(".reason").addClass('enabled');
+}
 </script>
 <script src="script/jquery.backDetect.js"></script>
 <script src="script/back_button.js"></script>
 <script src="script/canvasjs.min.js"></script>
 <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
-
-
-
-
-
-</body>
 </html>
