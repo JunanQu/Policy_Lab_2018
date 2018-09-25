@@ -268,12 +268,6 @@ chart.render();
 	border-radius: 3px;
 }
 
-	cursor: pointer;
-}
-
-	background: gray;
-}
-
 .reason .desc {
 	flex: 3;
 	margin-left: 10px;
@@ -319,9 +313,13 @@ chart.render();
 			<!-- TODO(JunanQu): Figure out action attribute for form. -->
 			<form action="yes.php?preference=1" method=POST>
 				<div class="reason">
+					<button class="reason_button" value="culture">
+						CULTURE
+					</button>
+					<div class="desc">Because the issue involves historical <?php echo "$user_political_id" ?> party
+						positions.</div>
 				</div>
 				<div class="reason">
-<<<<<<< HEAD
 					<button class="reason_button" value="history">
 						HISTORY
 					</button>
@@ -333,8 +331,6 @@ chart.render();
 						POPULARITY
 					</button>
 					<div class="desc">Because the issue is important to the <?php echo "$user_political_id" ?>
-=======
->>>>>>> 3adab7c418016c1ae2b217ce7f519a8c6d9e14b4
 						party’s core political base.</div>
 				</div>
 			</form>
