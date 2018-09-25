@@ -33,10 +33,10 @@
            <p>
            For each statement:<br/>
 
-           <!-- <input type="checkbox" class="item">
+           <input type="checkbox" class="item">
            You will see the views of previous participants from each political
            party.
-           <br/> -->
+           <br/>
 
            <input type="checkbox" class="item">
            We will ask you to predict the reason most [D/R] players will give

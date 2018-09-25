@@ -165,11 +165,6 @@ if($num_of_users == 1){
 	</div>
 </div>
 
-<script src="script/canvasjs.min.js"></script>
-<script src="script/back_button.js"></script>
-<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
-<script src="script/jquery.backDetect.js"></script>
-
 <script>
 window.onload = function () {
 
@@ -295,4 +290,9 @@ $(document).ready(function(){
 </form>
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+<script src="script/jquery.backDetect.js"></script>
+<script src="script/back_button.js"></script>
+<script src="script/canvasjs.min.js"></script>
 </html>

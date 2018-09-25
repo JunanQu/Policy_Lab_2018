@@ -37,7 +37,7 @@
         <form action="consent0.php" method="post">
         <label>MTURK USER ID</label>
         <input type="text" name="mTurk_code" placeholder="MTURK ID" required />
-        <!-- <div class="g-recaptcha" data-sitekey="6LffU3AUAAAAAIv9pedaBYQR0VbK-UlXWyyNnyqi"></div> -->
+        <div class="g-recaptcha" data-sitekey="6LffU3AUAAAAAIv9pedaBYQR0VbK-UlXWyyNnyqi"></div>
         <button name="login" type="submit" value="LogIn">Log In</button>
         </form>
     </div>
