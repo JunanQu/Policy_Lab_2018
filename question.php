@@ -323,8 +323,9 @@ chart.render();
 				<div class="reason">
 					<input name="ideology" type="submit" class="reason_button" value="ideology" disabled>
 					</input>
-					<div class="desc">Because the issue involves
-						<?php echo "$user_political_id" ?> party values (liberal vs. conservative).</div>
+					<div class="desc">
+						Because the issue involves <?php echo "$user_political_id" ?> party values (liberal vs. conservative).
+					</div>
 				</div>
 				<div class="reason">
 					<input name="history" type="submit" class="reason_button" value="history" disabled>
