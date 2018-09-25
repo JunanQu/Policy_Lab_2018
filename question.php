@@ -144,6 +144,7 @@ if($num_of_users == 1){
 <html>
 <head>
 <link href="styles/all.css" rel="stylesheet" type="text/css"/>
+
 <script>
 window.onload = function () {
 
@@ -157,7 +158,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			$oppo_stand = "Democratic";
 		}
 		if($id_carrier == 23 || $id_carrier == 24){
-			echo "text: 'Percent who agree, by political party',";
+			echo "text: 'Percent who agree, by political party'";
 		}else if ($all_demo_in_world == 0 OR $all_republican_in_world == 0){
 			echo "text: 'So far, all the participants have been from the ".$oppo_stand." Party'";
 		}else{
@@ -185,7 +186,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Democrats Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 10,
+			indexLabelFontSize: 20,
 			indexLabelFontColor: "black",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
@@ -197,7 +198,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 10,
+			indexLabelFontSize: 20,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -206,7 +207,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Republicans Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 10,
+			indexLabelFontSize: 20,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -215,7 +216,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Republicans Who Oppose",
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 10,
+			indexLabelFontSize: 20,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}
@@ -226,6 +227,8 @@ chart.render();
 
 }
 </script>
+
+
 <style>
 .left {
 	float: left;
@@ -268,6 +271,14 @@ chart.render();
 	border-radius: 3px;
 }
 
+.reason.enabled .reason_button {
+	cursor: pointer;
+}
+
+.reason.enabled .reason_button:hover {
+	background: gray;
+}
+
 .reason .desc {
 	flex: 3;
 	margin-left: 10px;
@@ -281,11 +292,9 @@ chart.render();
 			<div class="wrap">
 				<h1 class="content_q"><?php
 				if ($id_carrier == 23) {
-					echo "PRACTICE QUESTION 1: The Supreme Court has gone too far" +
-						" in liberalizing access to abortion.";
+					echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion.";
 				} else if ($id_carrier == 24) {
-					echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare')" +
-						" should be strengthened, not weakened or abolished." ;
+					echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
 				} else {
 					$records = exec_sql_query($myPDO,
 							"SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
@@ -294,7 +303,6 @@ chart.render();
 					}
 				};
 	      ?></h1>
-				<h2>{{QUESTION}}?</h2>
 				<div class="clear_chart"></div>
 			 </div>
 		</div>
@@ -311,25 +319,23 @@ chart.render();
 
 		<div class="reasons_question">
 			<!-- TODO(JunanQu): Figure out action attribute for form. -->
-			<form action="yes.php?preference=1" method=POST>
+			<form action="i_page_yes.php?preference=1" method="post">
 				<div class="reason">
-					<button class="reason_button" value="culture">
-						CULTURE
-					</button>
+					<input name="ideology" type="submit" class="reason_button" value="ideology" disabled>
+					</input>
+					<div class="desc">
+						Because the issue involves <?php echo "$user_political_id" ?> party values (liberal vs. conservative).
+					</div>
+				</div>
+				<div class="reason">
+					<input name="history" type="submit" class="reason_button" value="history" disabled>
+					</input>
 					<div class="desc">Because the issue involves historical <?php echo "$user_political_id" ?> party
 						positions.</div>
 				</div>
 				<div class="reason">
-					<button class="reason_button" value="history">
-						HISTORY
-					</button>
-					<div class="desc">Because the issue involves historical <?php echo "$user_political_id" ?> party
-						positions.</div>
-				</div>
-				<div class="reason">
-					<button class="reason_button" value="popularity">
-						POPULARITY
-					</button>
+					<input name="popularity" type="submit" class="reason_button" value="popularity" disabled>
+					</input>
 					<div class="desc">Because the issue is important to the <?php echo "$user_political_id" ?>
 						party’s core political base.</div>
 				</div>
@@ -342,20 +348,21 @@ chart.render();
 
 <!-- ================ IMPORTS ================ -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-	console.log('Ready!');
-    setTimeout(enableQuestion, 5000);
-});
-
-function enableQuestion() {
-	$(".reasons_question").fadeTo(500, 1);
-	$(".reason").addClass('enabled');
-	$(':input[type="submit"]').prop('disabled', false);
-}
-</script>
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
 <script src="script/jquery.backDetect.js"></script>
 <script src="script/back_button.js"></script>
+<script>
+	$(document).ready(function() {
+		console.log('Ready!');
+    	setTimeout(enableQuestion, 5000);
+	});
+
+	function enableQuestion() {
+		$(".reasons_question").fadeTo(500, 1);
+		$(".reason").addClass('enabled');
+		$(':input[type="submit"]').prop('disabled', false);
+	}
+</script>
 <script src="script/canvasjs.min.js"></script>
-<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+
 </html>

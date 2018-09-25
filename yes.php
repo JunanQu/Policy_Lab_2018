@@ -153,7 +153,7 @@ if($num_of_users == 1){
 			}else if ($id_carrier == 24) {
 				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
 			}else{
-			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
+			$records = exec_sql_query($myPDO, "SELECT question_content,id FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 			if($records){
 				echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
 				}
@@ -195,7 +195,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	interactivityEnabled: false,
 	axisX: {
-	labelFontSize: 30
+	labelFontSize: 15
 	},
 	axisY: {
 		suffix: "%"
@@ -207,7 +207,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Democrats Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
@@ -219,31 +219,26 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 		},{
-			color: "red",
+			color: "rgb(191, 40, 0)",
 			type: "stackedColumn100",
 			name: "Republicans Who Support",
-			// showInLegend: true,
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
 			color: "#FFCCBB",
 			type: "stackedColumn100",
 			name: "Republicans Who Oppose",
-			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}
 	]
@@ -257,7 +252,7 @@ chart.render();
 <body>
 
 
-<div id="chartContainer" style="height: 350px; width: 100%; float: right;"></div>
+<div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -265,21 +260,23 @@ $(document).ready(function(){
     $("#page_yes").delay(3000).fadeIn();
 });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
 <script src="script/jquery.backDetect.js"></script>
 <script src="script/back_button.js"></script>
 <script src="script/canvasjs.min.js"></script>
-<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
 
 
+<p class="question_text2">
+	Which party do you predict will be more likely to agree with this statement?
+</p>
 <div class="wrapper5">
-<form  style="display:none"  id="page_yes" action="i_page_yes.php?preference=1" method="post">
-    <p class="question_text">
-      Which party do you predict will be more likely to agree with this statement?
-    </p>
-    <button id="support" name="party_repu" type="submit" value="Democrat_support">
-      <span class="italic">Republicans</span>
+<form  style="display:none; width: 46%; float:right; font-size:10px;"  id="page_yes" action="i_page_yes.php?preference=1" method="post">
+
+    <button id="support" style="margin-top: 15%;" name="party_repu" type="submit" value="Democrat_support">
+      <span class="italic" >Republicans</span>
     </button>
-    <button id="oppose" name="party_demo" type="submit" value="Republican_support">
+    <button id="oppose" style="margin-top: 15%;" name="party_demo" type="submit" value="Republican_support">
       <span class="italic">Democrats</span>
 </button>
 </form>
