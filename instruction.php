@@ -51,7 +51,7 @@ function enableButton() {
        <p>
          The Political Prediction Game tests how well contestants can predict the views of Democrats and Republicans on questions about which the parties have not yet taken a stance.
          At the end of the study, the contestant with the most accurate predictions will win a $100 prize (to be divided equally in case of ties).
-         Accordingly, we will show you 22 statements and you have to predict which party is more likely to agree.
+         Accordingly, we will show you 16 statements and you have to predict why a party is more likely to agree.
          We will also ask you whether you agree or disagree with the statement.
        </p>
       <p>

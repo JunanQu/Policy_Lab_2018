@@ -153,7 +153,7 @@ if($num_of_users == 1){
 			}else if ($id_carrier == 24) {
 				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
 			}else{
-			$records = exec_sql_query($myPDO, "SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
+			$records = exec_sql_query($myPDO, "SELECT question_content,id FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 			if($records){
 				echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
 				}
@@ -165,6 +165,10 @@ if($num_of_users == 1){
 	</div>
 </div>
 
+<script src="script/canvasjs.min.js"></script>
+<script src="script/back_button.js"></script>
+<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+<script src="script/jquery.backDetect.js"></script>
 
 <script>
 window.onload = function () {
@@ -195,7 +199,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	interactivityEnabled: false,
 	axisX: {
-	labelFontSize: 30
+	labelFontSize: 25
 	},
 	axisY: {
 		suffix: "%"
@@ -207,7 +211,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Democrats Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 25,
 			indexLabelFontColor: "black",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
@@ -219,49 +223,40 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 25,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 		},{
-			color: "red",
+			color: "rgb(191, 40, 0)",
 			type: "stackedColumn100",
 			name: "Republicans Who Support",
-			// showInLegend: true,
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 25,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
 			color: "#FFCCBB",
 			type: "stackedColumn100",
 			name: "Republicans Who Oppose",
-			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 20,
+			indexLabelFontSize: 25,
 			indexLabelFontColor: "black",
-			// indexLabelBackgroundColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}
 	]
 });
-
 chart.render();
-
 }
 </script>
 </head>
 <body>
 
 
-<div id="chartContainer" style="height: 320px; width: 100%;"></div>
+<div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
 
-<script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
-<script src="script/jquery.backDetect.js"></script>
-<script src="script/back_button.js"></script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -272,14 +267,14 @@ $(document).ready(function(){
 });
 </script>
 
-<script src="script/canvasjs.min.js"></script>
+
 
 <div class="wrapper5">
 	<?php
-	if($id_carrier == 24){
-		echo'<form action="game_start.php" method="post">';
+	if($id_carrier == 24 || $id_carrier == 23){
+		echo'<form class="form_i" action="game_start.php" method="post">';
 	}else{
-		echo '<form action="yes.php?preference=1" method="post">';
+		echo '<form class="form_i" action="question.php?preference=1" method="post">';
 	}
 	// else{
 	// 	echo'<form action="practice_1.php" method="post">';
@@ -291,11 +286,11 @@ $(document).ready(function(){
     <p class="question_text" style="display: none;" id="show1">
       As a <?php echo "$user_political_id" ?>, would you be more likely to agree or disagree with this statement?
     </p>
-    <button style="display: none;" id="support" name="oppose" type="submit" value="oppose">
-      I <span class="italic">disagree</span> with this statement.
+    <button style="display: none; margin-top: 15%;"  id="support" name="oppose" type="submit" value="oppose">
+      I <span class="italic">disagree</span>.
     </button>
-    <button  style="display: none;" id="oppose" name="support" type="submit" value="support">
-      I <span class="italic">agree</span> with this statement.
+    <button  style="display: none; margin-top: 15%;" id="oppose" name="support" type="submit" value="support">
+      I <span class="italic">agree</span>.
 		</button>
 </form>
 </div>
