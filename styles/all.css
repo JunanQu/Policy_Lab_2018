@@ -60,12 +60,15 @@ body{
     margin: auto;
     text-align: left;
 }
-label, input[type="text"],input[type="submit"]{
+label,
+input[type="text"],
+input[type="submit"] {
     display: block;
 	font-family: 'Open Sans', sans-serif;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
     outline: 0;
     padding: 12px 15px;
     border: 1px solid #000;
@@ -84,9 +87,9 @@ input[type="text"], input[type="password"] {
 }
 a.pass {
     font-size: 15px;
-	    color: #ef4242;
-		font-family: 'Open Sans', sans-serif;
-		    letter-spacing: 2px;
+	color: #ef4242;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing: 2px;
 }
 .form a {
     display: block;

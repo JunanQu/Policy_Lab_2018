@@ -50,8 +50,29 @@
            </p>
            <br/>
 
-           <p><input type="checkbox" id="myCheck" class="item" onclick="enableButton();">
-               I have carefully read the instructions and am ready to continue with the test.<br>
+           <p>
+               In addition:</br>
+
+               <input type="checkbox" class="item">
+               For each statement, we will ask you to indicate whether you
+               personally agree or disagree with the the statement.
+               <br/>
+
+               <input type="checkbox" class="item">
+               PLEASE DO NOT PRESS THE BACK BUTTON ON YOUR BROWSER! This may
+               erase your data, causing you to be unpaid for your participation.
+               <br/>
+           </p>
+
+           <p>
+               When you have read these instructions, please check the box below
+               and press continue:
+               <br/>
+
+               <input type="checkbox" id="myCheck" class="item"
+                    onclick="enableButton();">
+               I have carefully read the instructions and am ready to continue
+               with the test.
            </p>
 
            <input type="submit" class="button" id="submitButton" value="Continue" disabled>
@@ -75,7 +96,7 @@ $('.item').click((e) => {
         unselectedItems++;
     }
 
-    toggleButton(unselectedItems !== 0);
+    toggleButton(unselectedItems == 0);
 });
 
 /**

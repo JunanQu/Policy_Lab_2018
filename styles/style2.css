@@ -70,6 +70,12 @@ label{
     cursor:pointer;
 }
 
+.button:disabled {
+    background-color: #e0e0e0;
+    color: gray;
+    cursor: default;
+}
+
 .wrapper {
     width: 600px;
     margin: auto;
