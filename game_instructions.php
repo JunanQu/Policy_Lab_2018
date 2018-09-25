@@ -25,33 +25,33 @@
 
     <div class="wrapper" id="consent">
        <form action="political_id.php" method="post">
-           <p><input type="checkbox" class="item">
-           You will see 15 statements about various political and cultural
-           beliefs (plus a practice question that does not count).</p>
-           <br/>
-
            <p>
-           For each statement:<br/>
-
-           <input type="checkbox" class="item">
-           You will see the views of previous participants from each political
-           party.
-           <br/>
-
-           <input type="checkbox" class="item">
-           We will ask you to predict the reason most [D/R] players will give
-           for why your party agrees or disagrees: ideology, history, or
-           popularity?
-           <br/>
-
-           <input type="checkbox" class="item">
-           At the end of the game, the player with the most accurate predictions
-           will win $100, divided equally in case of ties.
+               <input type="checkbox" class="item">
+               You will see 15 statements about various political and cultural
+               beliefs (plus a practice question that does not count).
            </p>
-           <br/>
 
            <p>
-               In addition:</br>
+               <b>For each statement:</b><br/>
+
+               <input type="checkbox" class="item">
+               You will see the views of previous participants from each political
+               party.
+               <br/>
+
+               <input type="checkbox" class="item">
+               We will ask you to predict the reason most [D/R] players will give
+               for why your party agrees or disagrees: ideology, history, or
+               popularity?
+               <br/>
+
+               <input type="checkbox" class="item">
+               At the end of the game, the player with the most accurate predictions
+               will win $100, divided equally in case of ties.
+           </p>
+
+           <p>
+               <b>In addition:</b></br>
 
                <input type="checkbox" class="item">
                For each statement, we will ask you to indicate whether you
@@ -65,12 +65,11 @@
            </p>
 
            <p>
-               When you have read these instructions, please check the box below
-               and press continue:
+               <b>When you have read these instructions, please check the box below
+               and press continue:</b>
                <br/>
 
-               <input type="checkbox" id="myCheck" class="item"
-                    onclick="enableButton();">
+               <input type="checkbox" class="item">
                I have carefully read the instructions and am ready to continue
                with the test.
            </p>
@@ -81,31 +80,19 @@
 </body>
 
 <script type="text/javascript">
-let unselectedItems;
-
-$(document).ready(() => {
-    unselectedItems = $('.item').size();
-    console.log('Number of required items: ', unselectedItems);
-    // toggleButton(false);
-});
-
+/**
+ * This will enable the submit button if and only if ALL checklist form items
+ * with the class name "item" are checked.
+ */
+var unselectedItems = $('.item').size();
 $('.item').click((e) => {
     if (e.target.checked) {
         unselectedItems--;
     } else {
         unselectedItems++;
     }
-
-    toggleButton(unselectedItems == 0);
+    $('#submitButton').prop('disabled', unselectedItems !== 0);
 });
-
-/**
- * Whether to enable button.
- * @param {boolean} enable
- */
-function toggleButton(enable) {
-	$('#submitButton').prop('disabled', !enable);
-}
 </script>
 
 </html>
