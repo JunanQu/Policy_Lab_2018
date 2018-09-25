@@ -50,7 +50,7 @@
         $array[$rand] = $rand;
       }
       $random_PQ = rand(23,24);
-      $res = array_splice($array,0,0,$random_PQ)+array_splice($array, 6, 0, 21) + array_splice($array, 13, 0, 22);
+      $res = array_splice($array,0,0,$random_PQ);
       array_push($array, 25);
 
       return $array;

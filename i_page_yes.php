@@ -211,7 +211,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Democrats Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 25,
+			indexLabelFontSize: 15,
 			indexLabelFontColor: "black",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
@@ -223,7 +223,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 25,
+			indexLabelFontSize: 15,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -232,7 +232,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Republicans Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 25,
+			indexLabelFontSize: 15,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -241,7 +241,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Republicans Who Oppose",
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 25,
+			indexLabelFontSize: 15,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}
