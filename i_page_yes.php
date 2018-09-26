@@ -149,9 +149,9 @@ if($num_of_users == 1){
 		<div class="wrap">
 			<h1 class="content_q"><?php
 			if ($id_carrier == 23){
-				echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion." ;
+				echo "PRACTICE QUESTION: The Supreme Court has gone too far in liberalizing access to abortion." ;
 			}else if ($id_carrier == 24) {
-				echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
+				echo "PRACTICE QUESTION: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
 			}else{
 			$records = exec_sql_query($myPDO, "SELECT question_content,id FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 			if($records){
