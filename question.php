@@ -1,6 +1,7 @@
 <?php
 // include('includes/header.php');
 include('test2.php');
+include('proceed.php');
 // $preference = $_GET["preference"];
 // exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
 if($num_of_users == 1){
@@ -299,7 +300,7 @@ chart.render();
 					$records = exec_sql_query($myPDO,
 							"SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 					if ($records) {
-						echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
+						echo("Question ".$current_seq_by_count.". ".'"'.$records['question_content'].'"');
 					}
 				};
 	      ?></h1>

@@ -1,4 +1,3 @@
-<!-- <?php include('includes/header.php')?> -->
 <?php include('test2.php')?>
 <!DOCTYPE html>
 <html>
