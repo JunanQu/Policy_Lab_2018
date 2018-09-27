@@ -259,13 +259,6 @@ chart.render();
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $("#show1").delay(3000).fadeIn();
-    $("#support").delay(3000).fadeIn();
-    $("#oppose").delay(3000).fadeIn();
-});
-</script>
 
 
 
@@ -295,4 +288,18 @@ $(document).ready(function(){
 </form>
 </div>
 </body>
+
+<script>
+$(document).ready(function(){
+    $("#show1").delay(3000).fadeIn();
+    $("#support").delay(3000).fadeIn();
+    $("#oppose").delay(3000).fadeIn();
+});
+
+window.onbeforeunload = function() {
+    return 'Are you sure you want to refresh? If you reload the page, your ' +
+        'changes may not be saved, which may leave this session incomplete and ' +
+        'discredit your work in previous questions.';
+};
+</script>
 </html>
