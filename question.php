@@ -1,6 +1,7 @@
 <?php
 // include('includes/header.php');
 include('test2.php');
+include('proceed.php');
 // $preference = $_GET["preference"];
 // exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
 if($num_of_users == 1){
@@ -292,14 +293,14 @@ chart.render();
 			<div class="wrap">
 				<h1 class="content_q"><?php
 				if ($id_carrier == 23) {
-					echo "PRACTICE QUESTION 1: The Supreme Court has gone too far in liberalizing access to abortion.";
+					echo "PRACTICE QUESTION: The Supreme Court has gone too far in liberalizing access to abortion.";
 				} else if ($id_carrier == 24) {
-					echo "PRACTICE QUESTION 2: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
+					echo "PRACTICE QUESTION: The Affordable Care Act ('Obamacare') should be strengthened, not weakened or abolished." ;
 				} else {
 					$records = exec_sql_query($myPDO,
 							"SELECT question_content FROM questions WHERE questions.id ='". $id_carrier."'")->fetch(PDO::FETCH_ASSOC);
 					if ($records) {
-						echo("Question ".$current_seq.". ".'"'.$records['question_content'].'"');
+						echo("Question ".$current_seq_by_count.". ".'"'.$records['question_content'].'"');
 					}
 				};
 	      ?></h1>
