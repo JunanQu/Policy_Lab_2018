@@ -40,27 +40,28 @@
 
       <!-- <p style="margin-bottom: 0px;"><strong>For each statement:</strong></p> -->
 
-       <p>
+       <!-- <p>
          <input type="checkbox" class="item">
          You will see the views of previous participants from each political
          party.
 
-       </p>
+       </p> -->
         <!-- <p>
            <input type="checkbox" class="item">
            At the end of the game, the player with the most accurate predictions
            will win $100, divided equally in case of ties.
        </p> -->
        <p>
-        <input type="checkbox" class="item">
-        At the end of the game, the player with the most accurate predictions
-        will win $100, divided equally in case of ties.
-      </p>
-       <p>
          <input type="checkbox" class="item">
          For each statement, we will ask you to predict
          <strong>the reason</strong> players from your party might give for why your party might agree or disagree with that statement: ideology, history, or popularity?
        </p>
+       <p>
+        <input type="checkbox" class="item">
+        At the end of the game, the player with the most accurate predictions
+        will win $100, divided equally in case of ties.
+      </p>
+
 
        <p>
            <input type="checkbox" class="item">

@@ -57,12 +57,6 @@
 
         </p> -->
 
-       <!-- <p>
-         <input type="checkbox" class="item">
-         At the end of the game, the player with the most accurate predictions
-         will win $100, divided equally in case of ties.
-       </p> -->
-
 
        <p>
          <input type="checkbox" class="item">
