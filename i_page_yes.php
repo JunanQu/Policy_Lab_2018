@@ -292,11 +292,16 @@ $(document).ready(function(){
     $("#oppose").delay(3000).fadeIn();
 });
 
-window.onbeforeunload = function() {
-    return 'Are you sure you want to refresh? If you reload the page, your ' +
-        'changes may not be saved, which may leave this session incomplete and ' +
-        'discredit your work in previous questions.';
-};
+let isAnswered = <?php echo json_encode($is_answered); ?>;
+console.log('isAnswered', isAnswered);
+
+if (isAnswered) {
+    window.onbeforeunload = function() {
+        return 'Are you sure you want to refresh? If you reload the page, your ' +
+            'changes may not be saved, which may leave this session incomplete and ' +
+            'discredit your work in previous questions.';
+    };
+}
 </script>
 
 <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
