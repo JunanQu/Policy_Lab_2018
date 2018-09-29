@@ -39,7 +39,7 @@
          <p>
            <input type="checkbox" class="item">
            For each statement, we will ask you to predict
-           <strong>the reason</strong> players from your party might give for why your party might agree or disagree with that statement: ideology, history, or popularity?
+           <strong>the reason</strong> players from your party might give for why your party might agree or disagree with that statement: ideology, history, or popularity.
          </p>
 
          <p>

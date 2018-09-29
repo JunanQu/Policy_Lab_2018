@@ -37,7 +37,7 @@
           echo'<form action="question.php?preference=1" method="post">';
         }
       ?>
-      <label>BEFORE WE START THE GAME, WE WILL GIVE EVERYONE ONE PRACTICE QUESTION THAT WON’T COUNT TOWARD WINNING THE GAME.”</label>
+      <label>BEFORE WE START THE GAME, WE WILL GIVE EVERYONE ONE PRACTICE QUESTION THAT WON’T COUNT TOWARD WINNING THE GAME.</label>
       <button id="continue_button" name="continue" type="submit" value="continue">Continue</button>
       </form>
 

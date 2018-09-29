@@ -341,9 +341,10 @@ chart.render();
 						party’s core political base.</div>
 				</div>
 			</form>
-		</div>
-	</div>
-	<div id="chartContainer" class="box right">
+	   </div>
+  </div>
+	<div id="chartContainer" class="box right" style="height: 350px; width: 50%; "></div>
+
 	</div>
 </body>
 
