@@ -2,6 +2,8 @@
 // include('includes/header.php');
 include('test2.php');
 include('proceed.php');
+var_dump($support_num_of_demo_percent,$oppose_num_of_demo_percent,$support_num_of_repub_percent,$oppose_num_of_repub_percent);
+
 // $preference = $_GET["preference"];
 // exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
 if($num_of_users == 1){
@@ -310,16 +312,35 @@ chart.render();
 	</div>
 
 	<!-- ================ BODY ================ -->
-	<div class="box left">
-		<p><b>Please take 10 seconds to read the statement carefully and think about the
-		past views of previous participants.</b></p>
+	<!-- <div class="box left"> -->
+  <?php
+   if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+    echo '<div class="wrapper5" style="width:100%;">';
+  }
+  else {
+    echo '<div class="wrapper5">';
+  }
+ ?>
+  <!-- <div class="wrapper5" style="width:100% !important;"> -->
 
-		<p>Based on the bar chart to the right, pick the reason <?php echo "$user_political_id" ?> participants
-		might be more likely to agree or disagree with this statement, compared to
-		the other party:</p>
-
+<?php
+if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+		echo "<p>Pick the reason ";
+    echo "$user_political_id";
+    echo " players might answer differently than the other party.</p>";
+  }else{
+    echo "
+        <p>
+        <b>Please take 10 seconds to read the statement carefully and think about the
+    		past views of previous participants.
+        </b>
+        </p>
+        <p>Based on the bar chart to the right, pick the reason ";
+    echo "$user_political_id";
+    echo " players might might answer differently than the other party</p>";
+  }
+?>
 		<div class="reasons_question">
-			<!-- TODO(JunanQu): Figure out action attribute for form. -->
 			<form action="i_page_yes.php?preference=1" method="post">
 				<div class="reason">
 					<input name="ideology" type="submit" class="reason_button" value="ideology" disabled>
@@ -343,7 +364,8 @@ chart.render();
 			</form>
 	   </div>
   </div>
-	<div id="chartContainer" class="box right" style="height: 350px; width: 50%; "></div>
+	<!-- <div id="chartContainer" class="box right" style="height: 350px; width: 50%; "></div> -->
+  <div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
 
 	</div>
 </body>

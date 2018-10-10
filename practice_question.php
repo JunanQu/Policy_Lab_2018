@@ -30,13 +30,9 @@
     </div>
 
   <div class="wrapper3">
-      <?php
-        if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
-        echo'<form action="question.php?preference=1" method="post">';
-        }else{
-          echo'<form action="question.php?preference=1" method="post">';
-        }
-      ?>
+
+      <form action="i_page_yes.php?preference=1" method="post">
+
       <label>BEFORE WE START THE GAME, WE WILL GIVE EVERYONE ONE PRACTICE QUESTION THAT WON’T COUNT TOWARD WINNING THE GAME.</label>
       <button id="continue_button" name="continue" type="submit" value="continue">Continue</button>
       </form>

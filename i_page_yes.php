@@ -1,10 +1,29 @@
 <?php
 // include('includes/header.php');
 include('test2.php');
-include('proceed.php');
+// include('proceed.php');
+$check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
+$check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
+
+if ($support_rate_of_demo_percent >= 95){
+  $support_rate_of_demo_percent = rand(95,98);
+  $oppose_rate_of_demo_percent = 100-$support_rate_of_demo_percent;
+}
+if ($support_rate_of_demo_percent <= 5){
+  $support_rate_of_demo_percent = rand(1,5);
+  $oppose_rate_of_demo_percent = 100-$support_rate_of_demo_percent;
+}
+if($support_rate_of_repub_percent >= 95){
+  $support_rate_of_repub_percent = rand(95,98);
+  $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
+}
+if($support_rate_of_repub_percent <= 5){
+  $support_rate_of_repub_percent = rand(1,5);
+  $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
+}
 $preference = $_GET["preference"];
 exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
-if($num_of_users == 1){
+if($num_of_users == 1 || $current_user_world_id == 1){
 	$dataPoints1 = array(
 		array("label"=> null, "y"=> null, "x"=>null ),
 		array("label"=> null, "y"=> null),
@@ -25,7 +44,6 @@ if($num_of_users == 1){
 	);
 }else if ($id_carrier == 23){
 
-
 	$dataPoints1 = array(
 		array("label"=> "Democrats: 12% Agree", "y"=> 12, "z"=>$support_num_of_demo_percent),
 		array("label"=> "Republicans: 91% Agree", "y"=> null),
@@ -45,6 +63,7 @@ if($num_of_users == 1){
 		array("label"=> "Republicans: 91% Agree", "y"=> 9, "z"=>$oppose_num_of_repub_percent)
 	);
 }else if($id_carrier == 24){
+
 	$dataPoints1 = array(
 		array("label"=> "Democrats: 91% Agree", "y"=> 91, "z"=>$support_num_of_demo_percent),
 		array("label"=> "Republicans: 12% Agree", "y"=> null),
@@ -250,30 +269,38 @@ chart.render();
 <body>
 
 
-<div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 
-<div class="wrapper5">
-	<?php
-	if($id_carrier == 24 || $id_carrier == 23){
-		echo'<form class="form_i" action="game_start.php" method="post">';
-	}else{
-		echo '<form class="form_i" action="question.php?preference=1" method="post">';
-	}
-	// else{
-	// 	echo'<form action="practice_1.php" method="post">';
-	// }
-	?>
+<?php
+if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
+  echo '<div class="wrapper5" style="width:75% !important; margin-left:15%;">';
+}
+else {
+  echo '<div class="wrapper5">';
+}
+if($id_carrier == 24 || $id_carrier == 23){
+  if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+  echo '<form class="form_i" style="width:100% !important;" action="game_start.php" method="post">';
+  }else{
+	echo'<form class="form_i" action="game_start.php" method="post">';
+  }
+}else{
+  if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
+    echo '<form class="form_i" style="width:100% !important;" action="i_page_yes.php?preference=1" method="post">';
+  }else{
+  echo '<form class="form_i" action="i_page_yes.php?preference=1" method="post">';
+  }
+}
+  // }
+?>
     <p class="question_text">
-      Next, we would like to know your own individual opinion.
+      Please take a few moments to read the statement carefully and think about your response
     </p>
     <p class="question_text" style="display: none;" id="show1">
-      As a <?php echo "$user_political_id" ?>, would you be more likely to agree or disagree with this statement?
+      As a <?php echo "$user_political_id" ?>, do you agree or disagree with this statment?
     </p>
     <button style="display: none; margin-top: 15%;"  id="support" name="oppose" type="submit" value="oppose">
       I <span class="italic">disagree</span>.
@@ -283,6 +310,7 @@ chart.render();
 		</button>
 </form>
 </div>
+<div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
 </body>
 
 <script>
