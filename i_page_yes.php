@@ -282,9 +282,13 @@ $form_universal_tag = '<form class="form_i" id="question_box" ';
 
 if($id_carrier == 24 || $id_carrier == 23){
   if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
+<<<<<<< HEAD
     echo $form_universal_tag, 'style="width:100% !important;" action="i_page_yes.php?preference=1" method="post">';
   if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
       echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
+=======
+  echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
+>>>>>>> 74b4c381cd172b036c6ea408f20b2a6bd9f31461
   }else{
 	echo $form_universal_tag, 'action="game_start.php" method="post">';
   }
@@ -318,6 +322,12 @@ if($id_carrier == 24 || $id_carrier == 23){
 <script>
 $(document).ready(function() {
     setTimeout(fadeInElements, 3000, $('.initially_hide'), $('.initially_show'));
+});
+
+// Listens for submit event only once.
+$('form.form_i').one('submit', (event) => {
+    event.preventDefault();
+    $('form.form_i').submit();
 });
 
 function fadeInElements(hiddenClassName, shownClassName) {
