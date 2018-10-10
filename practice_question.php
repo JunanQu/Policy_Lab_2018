@@ -9,6 +9,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="styles/all.css" media="all" />
+  <link href="styles/question_pages.css" rel="stylesheet" type="text/css" />
 
   <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
   <script src="script/jquery.backDetect.js"></script>
@@ -31,7 +32,7 @@
 
   <div class="wrapper3">
 
-      <form action="i_page_yes.php?preference=1" method="post">
+      <form  action="i_page_yes.php?preference=1" method="post">
 
       <label>BEFORE WE START THE GAME, WE WILL GIVE EVERYONE ONE PRACTICE QUESTION THAT WON’T COUNT TOWARD WINNING THE GAME.</label>
       <button id="continue_button" name="continue" type="submit" value="continue">Continue</button>

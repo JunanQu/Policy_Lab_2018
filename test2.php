@@ -201,6 +201,8 @@
         $current_seq = $current_seq[0]['sequential_number'];
         };
         if (isset($_POST['support'])){
+          $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
+          $current_seq = $current_seq[0]['sequential_number'] + 1;
           $user_answer = "support";
           if($id_carrier == 23|| $id_carrier == 24) {
             exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
@@ -217,6 +219,8 @@
           $id_carrier = check_question_id();
         }
         if (isset($_POST['oppose'])){
+          $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
+          $current_seq = $current_seq[0]['sequential_number'] + 1;
           $user_answer = "oppose";
           if($id_carrier == 23|| $id_carrier == 24) {
             exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
@@ -232,9 +236,6 @@
           $current_user = check_login();
           $id_carrier = check_question_id();
         }
-        $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-        $current_seq = $current_seq[0]['sequential_number'] + 1;
-        exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
       }
 
       $previous_one = get_previous_one();
