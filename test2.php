@@ -189,56 +189,6 @@
         $current_user_world_id = $current_user_world_id['world'];
         $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
         $current_seq = $current_seq[0]['sequential_number'];
-        // if (isset($_POST['support'])){
-        //   global $myPDO;
-        //   $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-        //   // ($current_seq[0]['sequential_number']);
-        //   $current_seq = $current_seq[0]['sequential_number'] + 1;
-        //   exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
-        //
-        //   $user_answer = "support";
-        //
-        //   // ($id_carrier);
-        //   $a=exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_response = '$user_answer' WHERE question_id = '$previous_one' AND user_id = '$current_user'");
-        //   // ($previous_one);
-        //   // ($a);
-        //
-        //
-        //   $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-        //   if ($current_seq){
-        //   $current_seq = $current_seq[0]['sequential_number'];
-        // };
-        //   $previous_one = get_previous_one();
-        //   $current_user = check_login();
-        //   $id_carrier = check_question_id();
-        // }
-        // if (isset($_POST['oppose'])){
-        //   global $myPDO;
-        //   $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-        //   // ($current_seq[0]['sequential_number']);
-        //   $current_seq = $current_seq[0]['sequential_number'] + 1;
-        //   exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
-        //
-        //   $user_answer = "oppose";
-        //
-        //   // ($id_carrier);
-        //   $a=exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_response = '$user_answer' WHERE question_id = '$previous_one' AND user_id = '$current_user'");
-        //   ($a);
-        //
-        //
-        //   $current_user = check_login();
-        //   $id_carrier = check_question_id();
-        // }
-        // if (isset($_POST['ideology'])){
-        //   exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, reason) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', 'ideology') ");
-        //   // exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_which_party = 'Democrats'  WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
-        // }elseif (isset($_POST['history'])){
-        //   exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, reason) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', 'history') ");
-        //   // exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_which_party = 'Republicans'  WHERE user_id = '$current_user'AND question_id = '$id_carrier'");
-        // }elseif (isset($_POST['popularity'])){
-        //   exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, reason) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', 'popularity') ");
-        //   // exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_which_party = 'Republicans'  WHERE user_id = '$current_user'AND question_id = '$id_carrier'");
-        // }
       }else{
         global $myPDO;
         $current_user = check_login();
@@ -251,63 +201,40 @@
         $current_seq = $current_seq[0]['sequential_number'];
         };
         if (isset($_POST['support'])){
-          $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
-          $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-
-          // $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-          // $current_seq = $current_seq[0]['sequential_number'] + 1;
-          // exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
-
           $user_answer = "support";
-          // $a=exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_response = '$user_answer' WHERE question_id = '$previous_one' AND user_id = '$current_user'");
-
           if($id_carrier == 23|| $id_carrier == 24) {
             exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-          }else{
+          }else
+          {
             $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
             $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-            if (($check_if_answered[0]['user_response'])!= null){
+            if (($check_if_answered[0]['user_response'])!= null)
+            {
               exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
             }
           }
           $current_user = check_login();
           $id_carrier = check_question_id();
-          // if (($check_if_answered[0]['user_response'])!= null){
-          //     exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-          //     $current_user = check_login();
-          //     $id_carrier = check_question_id();
-          // }
         }
         if (isset($_POST['oppose'])){
-          $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
-          $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-
-          $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
-          $current_seq = $current_seq[0]['sequential_number'] + 1;
-          exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
-
           $user_answer = "oppose";
-          $a=exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_response = '$user_answer' WHERE question_id = '$previous_one' AND user_id = '$current_user'");
-
           if($id_carrier == 23|| $id_carrier == 24) {
             exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-          }else{
-                $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
-                $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-                if (($check_if_answered[0]['user_response'])!= null){
-                  exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-                }
+          }else
+          {
+            $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
+            $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
+            if (($check_if_answered[0]['user_response'])!= null)
+            {
+              exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
+            }
           }
           $current_user = check_login();
           $id_carrier = check_question_id();
-
-          // if (($check_if_answered[0]['user_response'])!= null){
-          //     exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-          //     $current_user = check_login();
-          //     $id_carrier = check_question_id();
-          // }
-
         }
+        $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
+        $current_seq = $current_seq[0]['sequential_number'] + 1;
+        exec_sql_query($myPDO, "UPDATE user SET sequential_number = ('$current_seq') WHERE mturk LIKE '$current_user'");
       }
 
       $previous_one = get_previous_one();
@@ -333,15 +260,6 @@
       $support_rate_of_demo = $demo_who_support / $all_demo_in_world;
       $oppose_rate_of_demo = $demo_who_oppose / $all_demo_in_world;
       }
-
-      // if($demo_who_support2 == 0 && $demo_who_oppose2 == 0){
-      // $support_rate_of_demo2 = NULL;
-      // $oppose_rate_of_demo2 = NULL;
-      // }
-      // else{
-      // $support_rate_of_demo2 = $demo_who_support2 / $all_demo_in_world2;
-      // $oppose_rate_of_demo2 = $demo_who_oppose2 / $all_demo_in_world2;
-      // }
 
       $republican_who_support=exec_sql_query($myPDO, "SELECT * FROM user_question_world_answer JOIN user ON user.mturk = user_question_world_answer.user_id WHERE (question_id = '$id_carrier' AND user_response = 'support' AND user_yes_no = 1 AND world_id = '$current_user_world_id' AND (user.political_stand = 'Republicans' OR user.political_stand = 'strong Republicans'))")->fetchAll();
       $republican_who_oppose=exec_sql_query($myPDO, "SELECT * FROM user_question_world_answer JOIN user ON user.mturk = user_question_world_answer.user_id WHERE (question_id = '$id_carrier' AND user_response = 'oppose' AND user_yes_no = 1 AND world_id = '$current_user_world_id' AND (user.political_stand = 'Republicans' OR user.political_stand = 'strong Republicans'))")->fetchAll();
@@ -376,9 +294,7 @@
 
 
       if (isset($_POST['party_id_continue'])) {
-
         $user_political = $_POST['political_stand'];
-        // ($user_political);
         if ($user_political == 'neither') {
           header('Location: thanks2.php');
         }
@@ -398,14 +314,7 @@
       }
     };
 
-      if (isset($_POST['yes'])){
-        header('Location: yes.php?preference=1');
-      }else if(isset($_POST['no'])){
-        header('Location: no.php?preference=0');
-      }
-
       $user_political_id=check_Political();
-
       function get_previous_one(){
         global  $myPDO;
         global $current_user;
@@ -433,7 +342,6 @@
       exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
     }
     $num_of_users = count(exec_sql_query($myPDO, "SELECT * FROM user")->fetchAll());
-    // var_dump($support_rate_of_demo_percent,$oppose_num_of_demo_percent,$support_num_of_repub_percent,$oppose_num_of_repub_percent);
     if($id_carrier == 25){
       header('Location: thanks.php');
     }
@@ -456,25 +364,7 @@
         }
       }
 
-      // if(isset($_POST['ideology'])){
-      //   // echo"123";
-      //   $reason = "ideology";
-      //   // var_dump($current_user, $id_carrier);
-      //   $a=exec_sql_query($myPDO, "UPDATE user_question_world_answer SET reason = 'ideology'  WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
-      //   var_dump($a);
-      // }
-      // if(isset($_POST['history'])){
-      //   $reason = "history";
-      //   exec_sql_query($myPDO, "UPDATE user_question_world_answer SET reason = '$reason' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
-      // }
-      // if(isset($_POST['popularity'])){
-      //   $reason = "popularity";
-      //   exec_sql_query($myPDO, "UPDATE user_question_world_answer SET reason = '$reason' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
-      // }
-
-
       $records2 = exec_sql_query($myPDO, "SELECT question_id FROM user_question_world_answer  WHERE user_id='". $current_user. "'")->fetchAll();
       $current_seq_by_count = COUNT($records2);
-      // var_dump($current_seq_by_count);
 
 ?>
