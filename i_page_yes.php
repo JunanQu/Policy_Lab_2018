@@ -272,24 +272,23 @@ chart.render();
 
 <?php
 if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
-  echo '<div class="wrapper5" style="width:75% !important; margin-left:15%;">';
+  echo '<div class="wrapper5" style="width:75% !important; margin:10%; margin-top:0;">';
 }
 else {
   echo '<div class="wrapper5">';
 }
+
 $form_universal_tag = '<form class="form_i" id="question_box" ';
 
 if($id_carrier == 24 || $id_carrier == 23){
-<<<<<<< HEAD
   if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
-  echo '<form class="form_i" style="width:100% !important;" action="game_start.php" method="post">';
-=======
+    echo $form_universal_tag, 'style="width:100% !important;" action="i_page_yes.php?preference=1" method="post">';
   if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
       echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
->>>>>>> 89411e53277ad42e358994a5b5d70eac13a92ad8
   }else{
 	echo $form_universal_tag, 'action="game_start.php" method="post">';
   }
+}
 }else{
   if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
     echo $form_universal_tag, 'style="width:100% !important;" action="i_page_yes.php?preference=1" method="post">';
@@ -297,7 +296,6 @@ if($id_carrier == 24 || $id_carrier == 23){
   echo $form_universal_tag, 'action="i_page_yes.php?preference=1" method="post">';
   }
 }
-  // }
 ?>
     <p class="question_text initially_show">
       Please take a few moments to read the statement carefully and think about your response.
@@ -306,12 +304,12 @@ if($id_carrier == 24 || $id_carrier == 23){
       As a <?php echo "$user_political_id" ?>, do you agree or disagree with this statment?
     </p>
     <br/><br/>
-    <button class="opinion_response initially_hide" name="oppose" type="submit" value="oppose">
-      I <span class="italic">disagree</span>.
-    </button>
-    <button  class="opinion_response initially_hide" name="support" type="submit" value="support">
-      I <span class="italic">agree</span>.
-	</button>
+  <button  class="opinion_response initially_hide" name="support" type="submit" value="support">
+    I <span class="italic">agree</span>.
+  </button>
+  <button class="opinion_response initially_hide" name="oppose" type="submit" value="oppose">
+    I <span class="italic">disagree</span>.
+  </button>
 </form>
 </div>
 <div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
@@ -334,11 +332,6 @@ function fadeInElements(hiddenClassName, shownClassName) {
     });
 }
 
-// window.onbeforeunload = function() {
-//     return 'Are you sure you want to refresh? If you reload the page, your ' +
-//         'changes may not be saved, which may leave this session incomplete and ' +
-//         'discredit your work in previous questions.';
-// };
 </script>
 
 <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
