@@ -108,24 +108,25 @@ label {
 }
 
 button[type="submit"] {
-		margin: 20px auto;
+    margin: 20px auto;
     padding: 9px 60px;
     font-size: 18px;
-    border: none;
     background-color:#7a38ff;
     color: #fff;
     text-transform: uppercase;
     outline: 0;
     border: 2px solid r#7a38ff;
-		cursor: pointer;
-	  width: 100%;
-	  letter-spacing: 1px;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 1px;
+    box-sizing: border-box;
 }
 
 button[type="submit"]:hover {
-  color: #7a38ff;
-  background-color: white;
-	border: 2px solid #7a38ff;
+    color: #7a38ff;
+    background-color: white;
+    border: 2px solid #7a38ff;
+    box-sizing: border-box;
 }
 
 /* header */
