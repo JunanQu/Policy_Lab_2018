@@ -163,7 +163,9 @@ if($num_of_users == 1 || $current_user_world_id == 1){
 <!DOCTYPE HTML>
 <html>
 <head>
-<link href="styles/all.css" rel="stylesheet" type="text/css"  />
+<link href="styles/all.css" rel="stylesheet" type="text/css" />
+<link href="styles/question_pages.css" rel="stylesheet" type="text/css" />
+
 <div class="index-banner1">
 	<div class="header-top">
 		<div class="wrap">
@@ -281,44 +283,57 @@ if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && 
 else {
   echo '<div class="wrapper5">';
 }
+$form_universal_tag = '<form class="form_i" id="question_box" ';
+
 if($id_carrier == 24 || $id_carrier == 23){
   if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
-  echo '<form class="form_i" style="width:100% !important;" action="game_start.php" method="post">';
+      echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
   }else{
-	echo'<form class="form_i" action="game_start.php" method="post">';
+	echo $form_universal_tag, 'action="game_start.php" method="post">';
   }
 }else{
   if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
-    echo '<form class="form_i" style="width:100% !important;" action="i_page_yes.php?preference=1" method="post">';
+    echo $form_universal_tag, 'style="width:100% !important;" action="i_page_yes.php?preference=1" method="post">';
   }else{
-  echo '<form class="form_i" action="i_page_yes.php?preference=1" method="post">';
+  echo $form_universal_tag, 'action="i_page_yes.php?preference=1" method="post">';
   }
 }
   // }
 ?>
-    <p class="question_text">
-      Please take a few moments to read the statement carefully and think about your response
+    <p class="question_text initially_show">
+      Please take a few moments to read the statement carefully and think about your response.
     </p>
-    <p class="question_text" style="display: none;" id="show1">
+    <p class="question_text initially_hide">
       As a <?php echo "$user_political_id" ?>, do you agree or disagree with this statment?
     </p>
-    <button style="display: none; margin-top: 15%;"  id="support" name="oppose" type="submit" value="oppose">
+    <br/><br/>
+    <button class="opinion_response initially_hide" name="oppose" type="submit" value="oppose">
       I <span class="italic">disagree</span>.
     </button>
-    <button  style="display: none; margin-top: 15%;" id="oppose" name="support" type="submit" value="support">
+    <button  class="opinion_response initially_hide" name="support" type="submit" value="support">
       I <span class="italic">agree</span>.
-		</button>
+	</button>
 </form>
 </div>
 <div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
 </body>
 
 <script>
-$(document).ready(function(){
-    $("#show1").delay(3000).fadeIn();
-    $("#support").delay(3000).fadeIn();
-    $("#oppose").delay(3000).fadeIn();
+$(document).ready(function() {
+    setTimeout(fadeInElements, 3000, $('.initially_hide'), $('.initially_show'));
 });
+
+function fadeInElements(hiddenClassName, shownClassName) {
+    // Makes hidden elements fully visible.
+    hiddenClassName.each(function(ind) {
+        $(this).css({visibility:'visible'}).fadeTo(1000, 1);
+    });
+
+    // Makes shown elements partially obfuscated.
+    shownClassName.each(function(ind) {
+        $(this).fadeTo(1000, 0.3);
+    });
+}
 
 // window.onbeforeunload = function() {
 //     return 'Are you sure you want to refresh? If you reload the page, your ' +
