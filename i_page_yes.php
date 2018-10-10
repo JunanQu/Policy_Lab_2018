@@ -1,10 +1,5 @@
 <?php
-// include('includes/header.php');
 include('test2.php');
-// include('proceed.php');
-$check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
-$check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-
 if ($support_rate_of_demo_percent >= 95){
   $support_rate_of_demo_percent = rand(95,98);
   $oppose_rate_of_demo_percent = 100-$support_rate_of_demo_percent;
@@ -206,7 +201,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		}else{
 			echo "text: 'Percent who agree, by political party',";
 		}?>
-		// text: "So far, <?php echo ($all_demo_in_world); ?> Democrats and <?php echo ($all_republican_in_world); ?> Republicans have responded to this question. Here are their responses:"
 	},
 	theme: "light2",
 	animationEnabled: true,
@@ -286,8 +280,8 @@ else {
 $form_universal_tag = '<form class="form_i" id="question_box" ';
 
 if($id_carrier == 24 || $id_carrier == 23){
-  if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
-      echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
+  if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1)) {
+  echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
   }else{
 	echo $form_universal_tag, 'action="game_start.php" method="post">';
   }
