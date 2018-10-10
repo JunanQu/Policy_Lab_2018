@@ -318,9 +318,13 @@ $(document).ready(function() {
 });
 
 // Listens for submit event only once.
-$('form.form_i').one('submit', (event) => {
+let wasSubmitted = false;
+$('form.form_i').on('submit', (event) => {
     event.preventDefault();
-    $('form.form_i').submit();
+    if (!wasSubmitted) {
+        $('form.form_i').submit();
+        wasSubmitted = true;
+    }
 });
 
 function fadeInElements(hiddenClassName, shownClassName) {
