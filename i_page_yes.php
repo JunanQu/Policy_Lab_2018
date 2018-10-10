@@ -323,6 +323,12 @@ $(document).ready(function() {
     setTimeout(fadeInElements, 3000, $('.initially_hide'), $('.initially_show'));
 });
 
+// Listens for submit event only once.
+$('form.form_i').one('submit', (event) => {
+    event.preventDefault();
+    $('form.form_i').submit();
+});
+
 function fadeInElements(hiddenClassName, shownClassName) {
     // Makes hidden elements fully visible.
     hiddenClassName.each(function(ind) {
