@@ -330,7 +330,7 @@ var USER_END_TIME = -1;
 
 $(document).ready(function() {
     USER_START_TIME = performance.now();
-    console.log('============================\n NEW PAGE\n============================');
+    console.log('\n\n\n\n\n\n\n\n\n\n============================\n NEW PAGE\n============================');
     setTimeout(fadeNextQuestion, 3000, $('.initially_hide'), $('.initially_show'));
 });
 
@@ -344,8 +344,8 @@ $('.opinion_response').click((event) => {
 
     if (CAN_SUBMIT && !WAS_SUBMITTED && responseVal != '') {
         // Populate hidden input field that stores 'agree' or 'disagree'.
-        $('user_response').val(responseVal);
-        $('user_time').val(timeVal);
+        $('.user_response').val(responseVal);
+        $('.user_time').val(timeVal);
         console.log('Populating response with ' + responseVal);
         console.log('Populating time with ' + timeVal);
 
@@ -355,6 +355,8 @@ $('.opinion_response').click((event) => {
         // Disable buttons to disallow users from submitting multiple times.
         hideEl_($('.opinion_response'), true);
         WAS_SUBMITTED = true;
+    } else if (responseVal == '') {
+        debugger;
     }
 });
 
