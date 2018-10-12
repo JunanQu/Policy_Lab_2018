@@ -355,8 +355,6 @@ $('.opinion_response').click((event) => {
         // Disable buttons to disallow users from submitting multiple times.
         hideEl_($('.opinion_response'), true);
         WAS_SUBMITTED = true;
-    } else if (responseVal == '') {
-        debugger;
     }
 });
 
