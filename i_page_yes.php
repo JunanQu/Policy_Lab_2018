@@ -1,5 +1,6 @@
 <?php
 include('test2.php');
+if (!$num_of_users<=1 && (!$all_demo_in_world==0 || !$all_republican_in_world==0)){
 if ($support_rate_of_demo_percent >= 95){
   $support_rate_of_demo_percent = rand(95,98);
   $oppose_rate_of_demo_percent = 100-$support_rate_of_demo_percent;
@@ -16,9 +17,10 @@ if($support_rate_of_repub_percent <= 5){
   $support_rate_of_repub_percent = rand(1,5);
   $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
 }
+}
 $preference = $_GET["preference"];
 exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
-if($num_of_users == 1 || $current_user_world_id == 1){
+if($num_of_users <= 1 || $current_user_world_id == 1 || ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1))){
 	$dataPoints1 = array(
 		array("label"=> null, "y"=> null, "x"=>null ),
 		array("label"=> null, "y"=> null),
@@ -259,7 +261,16 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	]
 });
 chart.render();
+$(window).resize(function() {
+
+    for(var i = 0; i < chart.options.axisX.labelFontSize; i++){
+				chart.options.axisX.labelFontSize = Math.min(20, Math.max(12, $("#chartContainer").width() /15));
+
+    }
+    chart.render();
+});
 }
+
 </script>
 </head>
 <body>
@@ -281,6 +292,7 @@ else {
 $form_universal_tag = '<form class="form_i" id="question_box" ';
 
 if($id_carrier == 24 || $id_carrier == 23){
+  // var_dump($support_num_of_demo_percent,$oppose_num_of_demo_percent, $support_num_of_repub_percent,$oppose_num_of_repub_percent);
   if ((($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0))||($current_user_world_id==1))
   {
     echo $form_universal_tag, 'style="width:100% !important;" action="game_start.php" method="post">';
@@ -305,17 +317,17 @@ if($id_carrier == 24 || $id_carrier == 23){
     <br/><br/>
 
     <!-- This is a hidden field that is used to pass data to the back-end. -->
-    <input type="text" name="user_response" id="user_response" style="display: none;">
-    <input type="text" name="user_time" id="user_time" style="display: none;">
+    <input type="hidden" name="user_response" id="user_response" >
+    <input type="hidden" name="user_time" id="user_time" >
 
     <!-- Buttons for user to choose between. This will auto-populate the hidden
          field on the client side. -->
     </fieldset>
-    <button id="agree" class="opinion_response initially_hide" value="support" disabled>
-        I <span class="italic">agree</span>.
+    <button id="agree" class="opinion_response initially_hide" value="agree" disabled>
+        I <span class="opinion_response italic">agree</span>.
     </button>
-    <button id="disagree" class="opinion_response initially_hide" value="oppose" disabled>
-        I <span class="italic">disagree</span>.
+    <button id="disagree" class="opinion_response initially_hide" value="disagree" disabled>
+        I <span class="opinion_response italic">disagree</span>.
     </button>
 </form>
 </div>
@@ -346,6 +358,9 @@ $('.opinion_response').click((event) => {
         // Populate hidden input field that stores 'agree' or 'disagree'.
         $('.user_response').val(responseVal);
         $('.user_time').val(timeVal);
+        document.getElementById('user_response').value = responseVal;
+        document.getElementById('user_time').value = timeVal;
+
         console.log('Populating response with ' + responseVal);
         console.log('Populating time with ' + timeVal);
 

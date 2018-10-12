@@ -92,12 +92,14 @@ function enableButton() {
        <?php
        // $politic_dump = exec_sql_query($myPDO, "SELECT political_stand FROM user WHERE mturk Like '$current_user'")->fetchAll();
        // $politic_dump = $politic_dump[0]['political_stand'];
+       // var_dump($all_demo_in_world,$all_republican_in_world);
+       // var_dump($num_of_users);
        // var_dump($support_num_of_demo_percent,$oppose_num_of_demo_percent,$support_num_of_repub_percent,$oppose_num_of_repub_percent);
        if ( $current_user_world_id == 1 ){
        echo'<form action="game_instructions.php" method="post">';
-     }elseif (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) && ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+     }elseif ($num_of_users<=1) {
        echo'<form action="game_instructions.php" method="post">';
-     }
+       }
         else{
        echo'<form action="game_instructions2.php" method="post">';
         }
