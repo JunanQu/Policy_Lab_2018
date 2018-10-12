@@ -204,17 +204,17 @@
           $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
           $current_seq = $current_seq[0]['sequential_number'] + 1;
           $user_answer = "support";
-          if($id_carrier == 23|| $id_carrier == 24) {
-            exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-          }else
-          {
-            $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
-            $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-            if (($check_if_answered[0]['user_response'])!= null)
-            {
-              exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-            }
-          }
+          // if($id_carrier == 23 || $id_carrier == 24) {
+          exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
+          // }else
+          // {
+          //   $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
+          //   $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
+          //   if (($check_if_answered[0]['user_response'])!= null)
+          //   {
+          //     exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
+          //   }
+          // }
           $current_user = check_login();
           $id_carrier = check_question_id();
         }
@@ -222,17 +222,17 @@
           $current_seq = exec_sql_query($myPDO, "SELECT sequential_number FROM user WHERE mturk LIKE '$current_user'")->fetchAll();
           $current_seq = $current_seq[0]['sequential_number'] + 1;
           $user_answer = "oppose";
-          if($id_carrier == 23|| $id_carrier == 24) {
-            exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-          }else
-          {
-            $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
-            $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
-            if (($check_if_answered[0]['user_response'])!= null)
-            {
-              exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
-            }
-          }
+          // if($id_carrier == 23|| $id_carrier == 24) {
+          exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
+          // }else
+          // {
+          //   $check_if_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$previous_one')")->fetchAll();
+          //   $check_if_current_answered = exec_sql_query($myPDO, "SELECT user_response FROM user_question_world_answer WHERE (user_id LIKE '$current_user' AND question_id LIKE '$id_carrier')")->fetchAll();
+          //   if (($check_if_answered[0]['user_response'])!= null)
+          //   {
+          //     exec_sql_query($myPDO, "INSERT INTO user_question_world_answer (user_id, world_id, question_id, user_response) VALUES ('$current_user', '$current_user_world_id', '$id_carrier', '$user_answer') ");
+          //   }
+          // }
           $current_user = check_login();
           $id_carrier = check_question_id();
         }
@@ -367,5 +367,6 @@
 
       $records2 = exec_sql_query($myPDO, "SELECT question_id FROM user_question_world_answer  WHERE user_id='". $current_user. "'")->fetchAll();
       $current_seq_by_count = COUNT($records2);
+      var_dump($id_carrier);
 
 ?>
