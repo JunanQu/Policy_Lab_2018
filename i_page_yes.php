@@ -306,6 +306,7 @@ if($id_carrier == 24 || $id_carrier == 23){
 
     <!-- This is a hidden field that is used to pass data to the back-end. -->
     <input type="text" name="user_response" id="user_response" style="display: none;">
+    <input type="text" name="user_time" id="user_time" style="display: none;">
 
     <!-- Buttons for user to choose between. This will auto-populate the hidden
          field on the client side. -->
@@ -324,8 +325,11 @@ if($id_carrier == 24 || $id_carrier == 23){
 <script>
 let WAS_SUBMITTED = false;
 let CAN_SUBMIT = false;
+var USER_START_TIME = -1;
+var USER_END_TIME = -1;
 
 $(document).ready(function() {
+    USER_START_TIME = performance.now();
     console.log('============================\n NEW PAGE\n============================');
     setTimeout(fadeNextQuestion, 3000, $('.initially_hide'), $('.initially_show'));
 });
@@ -334,12 +338,16 @@ $(document).ready(function() {
 $('.opinion_response').click((event) => {
     console.log('Click registered!');
     event.preventDefault();
+    USER_END_TIME = performance.now();
     let responseVal = event.target.id;
+    let timeVal = getDelta_(USER_START_TIME, USER_END_TIME);
 
     if (CAN_SUBMIT && !WAS_SUBMITTED && responseVal != '') {
         // Populate hidden input field that stores 'agree' or 'disagree'.
-        console.log('Populating with ' + event.target.id)
-        $('user_response').val(event.target.id);
+        $('user_response').val(responseVal);
+        $('user_time').val(timeVal);
+        console.log('Populating response with ' + responseVal);
+        console.log('Populating time with ' + timeVal);
 
         // Submit the form.
         $('form.form_i').submit();
@@ -389,6 +397,14 @@ function hideEl_(elToHide, opt_harshTransition) {
         }
         self.fadeTo(time, 0.3);
     });
+}
+
+function getDelta_(startTime_ms, endTime_ms) {
+    if (startTime_ms < 0 || endTime_ms < 0) {
+        return '-1';
+    }
+    let s = (endTime_ms - startTime_ms) / 1000;
+    return s.toFixed(4);
 }
 
 </script>
