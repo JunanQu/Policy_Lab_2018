@@ -303,46 +303,91 @@ if($id_carrier == 24 || $id_carrier == 23){
       As a <?php echo "$user_political_id" ?>, do you agree or disagree with this statment?
     </p>
     <br/><br/>
-  <button  class="opinion_response initially_hide" name="support" type="submit" value="support">
-    I <span class="italic">agree</span>.
-  </button>
-  <button class="opinion_response initially_hide" name="oppose" type="submit" value="oppose">
-    I <span class="italic">disagree</span>.
-  </button>
+
+    <!-- This is a hidden field that is used to pass data to the back-end. -->
+    <input type="text" name="user_response" id="user_response" style="display: none;">
+
+    <!-- Buttons for user to choose between. This will auto-populate the hidden
+         field on the client side. -->
+    </fieldset>
+    <button id="agree" class="opinion_response initially_hide" value="support" disabled>
+        I <span class="italic">agree</span>.
+    </button>
+    <button id="disagree" class="opinion_response initially_hide" value="oppose" disabled>
+        I <span class="italic">disagree</span>.
+    </button>
 </form>
 </div>
 <div id="chartContainer" style="height: 350px; width: 50%; float: right;"></div>
 </body>
 
 <script>
+let WAS_SUBMITTED = false;
+let CAN_SUBMIT = false;
+
 $(document).ready(function() {
-    setTimeout(fadeInElements, 3000, $('.initially_hide'), $('.initially_show'));
+    console.log('============================\n NEW PAGE\n============================');
+    setTimeout(fadeNextQuestion, 3000, $('.initially_hide'), $('.initially_show'));
 });
 
 // Listens for submit event only once.
-let wasSubmitted = false;
-$('form.form_i').on('submit', (event) => {
+$('.opinion_response').click((event) => {
+    console.log('Click registered!');
     event.preventDefault();
-<<<<<<< HEAD
-    $('form.form_i').submit();
-    console.log("submit");
-=======
-    if (!wasSubmitted) {
+    let responseVal = event.target.id;
+
+    if (CAN_SUBMIT && !WAS_SUBMITTED && responseVal != '') {
+        // Populate hidden input field that stores 'agree' or 'disagree'.
+        console.log('Populating with ' + event.target.id)
+        $('user_response').val(event.target.id);
+
+        // Submit the form.
         $('form.form_i').submit();
-        wasSubmitted = true;
+
+        // Disable buttons to disallow users from submitting multiple times.
+        hideEl_($('.opinion_response'), true);
+        WAS_SUBMITTED = true;
     }
->>>>>>> ec8b311af801a6d8ce90631ec82c5d6848bdb660
 });
 
-function fadeInElements(hiddenClassName, shownClassName) {
-    // Makes hidden elements fully visible.
-    hiddenClassName.each(function(ind) {
-        $(this).css({visibility:'visible'}).fadeTo(1000, 1);
-    });
+$('form.form_i').on('submit', function(event) {
+    console.log('SUBMITTED!!!', event);
+});
 
-    // Makes shown elements partially obfuscated.
-    shownClassName.each(function(ind) {
-        $(this).fadeTo(1000, 0.3);
+function fadeNextQuestion(elToShow, elToHide) {
+    CAN_SUBMIT = true; // Marks that user can submit.
+
+    showEl_(elToShow); // Makes hidden elements fully visible.
+    hideEl_(elToHide); // Makes shown elements partially obfuscated.
+}
+
+function showEl_(elToShow, opt_harshTransition) {
+    let time = opt_harshTransition ? 0 : 1000;
+
+    elToShow.each(function(ind) {
+        let self = $(this);
+        if (self.hasClass('opinion_response')) {
+            // If button (i.e., was just disabled)
+            self.prop('disabled', false);
+            self.fadeTo(time, 1);
+        } else {
+            // If manually obfuscated
+            self.css({
+                visibility: 'visible'
+            }).fadeTo(time, 1);
+        }
+    });
+}
+
+function hideEl_(elToHide, opt_harshTransition) {
+    let time = !!opt_harshTransition ? 0 : 1000;
+
+    elToHide.each(function(ind) {
+        let self = $(this);
+        if (self.hasClass('opinion_response')) {
+            self.prop('disabled', true);
+        }
+        self.fadeTo(time, 0.3);
     });
 }
 
