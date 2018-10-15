@@ -45,12 +45,12 @@
     function random_question_order_generator(){
       $array = [];
 
-      while( count($array) < 15 ){
+      while( count($array) < 20 ){
         $rand = mt_rand(1,20);
         $array[$rand] = $rand;
       }
-      $random_PQ = rand(23,24);
-      $res = array_splice($array,0,0,$random_PQ);
+      // $random_PQ = rand(23,24);
+      // $res = array_splice($array,0,0,$random_PQ);
       array_push($array, 25);
 
       return $array;

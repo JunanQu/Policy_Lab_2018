@@ -1,6 +1,7 @@
 <?php
 include('test2.php');
-if (!$num_of_users<=1 && (!$all_demo_in_world==0 || !$all_republican_in_world==0)){
+if (!$num_of_users<=1 && !(($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0))) {
+
 if ($support_rate_of_demo_percent >= 95){
   $support_rate_of_demo_percent = rand(95,98);
   $oppose_rate_of_demo_percent = 100-$support_rate_of_demo_percent;
@@ -9,14 +10,17 @@ if ($support_rate_of_demo_percent <= 5){
   $support_rate_of_demo_percent = rand(1,5);
   $oppose_rate_of_demo_percent = 100-$support_rate_of_demo_percent;
 }
-if($support_rate_of_repub_percent >= 95){
-  $support_rate_of_repub_percent = rand(95,98);
-  $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
+
 }
-if($support_rate_of_repub_percent <= 5){
-  $support_rate_of_repub_percent = rand(1,5);
-  $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
-}
+if(!($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)) {
+  if($support_rate_of_repub_percent >= 95){
+    $support_rate_of_repub_percent = rand(95,98);
+    $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
+  }
+  if($support_rate_of_repub_percent <= 5){
+    $support_rate_of_repub_percent = rand(1,5);
+    $oppose_rate_of_repub_percent = 100 - $support_rate_of_repub_percent;
+  }
 }
 $preference = $_GET["preference"];
 exec_sql_query($myPDO, "UPDATE user_question_world_answer SET user_yes_no = '$preference' WHERE user_id = '$current_user' AND question_id = '$id_carrier'");
@@ -118,6 +122,7 @@ if($num_of_users <= 1 || $current_user_world_id == 1 || ((($support_num_of_demo_
 		array("label"=> "Republicans: $support_rate_of_repub_percent% Agree", "y"=> $oppose_rate_of_repub_percent, "z"=>$oppose_num_of_repub_percent)
 	);
 }else if(($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0) && ($support_num_of_demo_percent != 0 || $oppose_num_of_demo_percent != 0)){
+  // var_dump($support_num_of_demo_percent,$oppose_num_of_demo_percent,$support_num_of_repub_percent,$oppose_num_of_repub_percent);
 	$dataPoints1 = array(
 		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> $support_rate_of_demo_percent, "z"=>$support_num_of_demo_percent),
 		array("label"=> " ", "y"=> null),
@@ -129,12 +134,12 @@ if($num_of_users <= 1 || $current_user_world_id == 1 || ((($support_num_of_demo_
 
 	$dataPoints3 = array(
 		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> null),
-		array("label"=> " ", "y"=> $support_rate_of_repub_percent, "z"=>$support_num_of_repub_percent)
+		array("label"=> " ", "y"=> null, "z"=>$support_num_of_repub_percent)
 	);
 
 	$dataPoints4 = array(
 		array("label"=> "Democrats: $support_rate_of_demo_percent% Agree", "y"=> null),
-		array("label"=> " ", "y"=> $oppose_rate_of_repub_percent, "z"=>$oppose_num_of_repub_percent)
+		array("label"=> " ", "y"=> null, "z"=>$oppose_num_of_repub_percent)
 	);
 }else{
 	$dataPoints1 = array(
@@ -198,7 +203,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		}
 		if($id_carrier == 23 || $id_carrier == 24){
 			echo "text: 'Percent who agree, by political party',";
-		}else if ($all_demo_in_world == 0 OR $all_republican_in_world == 0){
+		}else if (($support_num_of_demo_percent == 0 && $oppose_num_of_demo_percent == 0) || ($support_num_of_repub_percent == 0 && $oppose_num_of_repub_percent == 0)){
 			echo "text: 'So far, all the participants have been from the ".$oppo_stand." Party'";
 		}else{
 			echo "text: 'Percent who agree, by political party',";

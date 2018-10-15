@@ -34,7 +34,7 @@
 
       <form  action="i_page_yes.php?preference=1" method="post">
 
-      <label>BEFORE WE START THE GAME, WE WILL GIVE EVERYONE ONE PRACTICE QUESTION THAT WON’T COUNT TOWARD WINNING THE GAME.</label>
+      <label>BEFORE WE START THE SURVEY, PLEASE ANSWER THE PRACTICE QUESTION.</label>
       <button id="continue_button" name="continue" type="submit" value="continue">Continue</button>
       </form>
 

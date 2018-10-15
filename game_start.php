@@ -29,7 +29,7 @@ $(document).ready(function(){
       <div class="header-top">
         <div class="wrap">
 
-          <h1> Game Start </h1>
+          <h1> BEGIN </h1>
           <div class="clear"></div>
          </div>
       </div>

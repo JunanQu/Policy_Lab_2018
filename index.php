@@ -23,7 +23,7 @@
       <div class="header-top">
         <div class="wrap">
 
-          <h1>Welcome to the Political Prediction Game</h1>
+          <h1>Welcome to the Future Controversies Survey </h1>
           <div class="clear"></div>
          </div>
       </div>
@@ -32,11 +32,11 @@
   <div class="wrapper">
 
         <div class="form">
-        <p>You must log in using your MTURK user ID in order to participate:
+        <p>You must log in using your registered Facebook EMAIL address in order to participate:
         </p>
         <form action="consent0.php" method="post">
-        <label>MTURK USER ID</label>
-        <input type="text" name="mTurk_code" placeholder="MTURK ID" required />
+        <label>EMAIL</label>
+        <input type="text" name="mTurk_code" placeholder="Email Address" required />
         <!-- <div class="g-recaptcha" data-sitekey="6LffU3AUAAAAAIv9pedaBYQR0VbK-UlXWyyNnyqi"></div> -->
         <button name="login" type="submit" value="LogIn">Log In</button>
         </form>

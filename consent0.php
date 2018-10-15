@@ -56,8 +56,8 @@ function enableButton() {
         </p>
 
          <p>
-           If you agree to take part in this study, we will ask you to indicate whether you agree or disagree with 16 statements and why you believe other people may agree with such statements in an anonymous setting.
-           This should take less than 12 minutes, for which you will be paid $2.00.
+           If you agree to take part in this study, we will ask you to indicate whether you agree or disagree with 20 statements.
+           This should take less than 10 minutes, for which you will be paid $2.00.
          </p>
          <p>
           Taking part in this study is completely voluntary.
