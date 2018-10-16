@@ -42,7 +42,7 @@ $(document).ready(function(){
         echo'<form action="i_page_yes.php?preference=1" method="post">';
         // }
       ?>
-      <label>Now that you have had a chance to practice, we will start the game.</label>
+      <!-- <label>Now that you have had a chance to practice, we will start the game.</label> -->
       <label>Click “CONTINUE” when you are ready to begin.</label>
       <button id="continue_button" name="continue" type="submit" value="continue">Continue</button>
       </form>
