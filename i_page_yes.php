@@ -329,10 +329,10 @@ if($id_carrier == 24 || $id_carrier == 23){
          field on the client side. -->
     </fieldset>
     <button id="agree" class="opinion_response initially_hide" value="agree" disabled>
-        I <span class="opinion_response italic">agree</span>.
+        I agree.
     </button>
     <button id="disagree" class="opinion_response initially_hide" value="disagree" disabled>
-        I <span class="opinion_response italic">disagree</span>.
+        I disagree.
     </button>
 </form>
 </div>
