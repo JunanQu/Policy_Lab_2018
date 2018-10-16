@@ -1,7 +1,5 @@
 <?php
-
-
-
+    // Initialize world array.
     $world_array=array(1,2,3,4,5,6,7,8,9,10);
     shuffle($world_array);
 
@@ -9,6 +7,7 @@
       $world_array=[1,2,3,4,5,6,7,8,9,10];
     }
 
+    // Set AWS-related fields(?).
     $host = 'thirdtest.camwsondhmqr.us-east-2.rds.amazonaws.com';
     $db   = 'ebdb';
     $user = 'thirdtest';
@@ -39,9 +38,9 @@
 
     }
 
-
-
-
+    /**
+     * Given a list of questions, generates a random question order.
+     */
     function random_question_order_generator(){
       $array = [];
 
@@ -56,27 +55,28 @@
       return $array;
     }
 
+    /**
+     * Returns random world number.
+     */
     function random_world_generator(){
       $rand = mt_rand(1,9);
-
       return $rand;
     }
-
 
     $new_question_order=random_question_order_generator();
     $new_question_order = implode(",",$new_question_order);
 
-
-
+    /**
+     * Prepares and executes sql query. Throws exception if unsuccessful.
+     */
     function exec_sql_query($myPDO, $sql, $params = array()) {
-      try{
+      try {
         $query = $myPDO->prepare($sql);
         if ($query and $query->execute($params)) {
           return $query;
-      }
-
-    } catch (PDOException $exception) {
-      handle_db_error($exception);
+        }
+      } catch (PDOException $exception) {
+        handle_db_error($exception);
       }
     }
 
@@ -84,6 +84,10 @@
     }
 
 
+    /**
+     * Checks whether user is logged in. If they are, return the user object.
+     * Otherwise, return NULL.
+     */
     function check_login() {
       global $myPDO;
       global $current_user;
@@ -154,26 +158,23 @@
         }
       }
 
-      function check_question_id(){
-        global  $myPDO;
-        global $current_user;
-        if($current_user){
-
+    function check_question_id(){
+      global  $myPDO;
+      global $current_user;
+      if ($current_user){
         $records = exec_sql_query($myPDO, "SELECT mturk, question_id_sequence FROM user WHERE mturk='". $current_user. "'")->fetch(PDO::FETCH_ASSOC);
-
         $records2 = exec_sql_query($myPDO, "SELECT question_id FROM user_question_world_answer  WHERE user_id='". $current_user. "'")->fetchAll();
 
         $A = explode(",",$records["question_id_sequence"]);
         $B = count($records2);
-
         $C = $A[$B];
-
         exec_sql_query($myPDO, "UPDATE user SET current_question = '". $C. "' WHERE user.mturk = '". $current_user. "'");
-        if($records){
-        return $id_carrier=$C;
-      }else{
-        return null;
-      }
+
+        if ($records) {
+          return $id_carrier=$C;
+        } else {
+          return null;
+        }
       }
     }
 
