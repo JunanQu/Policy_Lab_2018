@@ -386,7 +386,6 @@ function fadeNextQuestion(elToShow, elToHide) {
     CAN_SUBMIT = true; // Marks that user can submit.
 
     showEl_(elToShow); // Makes hidden elements fully visible.
-    hideEl_(elToHide); // Makes shown elements partially obfuscated.
 }
 
 function showEl_(elToShow, opt_harshTransition) {
