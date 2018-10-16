@@ -129,7 +129,7 @@
                 // $user_political = $_POST['political_stand'];
                 $_SESSION['login_user']= $user_mTurk_code;
                 // $result = exec_sql_query($myPDO, "INSERT INTO user (mturk, political_stand, question_id_sequence, sequential_number) VALUES ('$user_mTurk_code', '$user_political', '$new_question_order', 1)");
-                $result = exec_sql_query($myPDO, "INSERT INTO user (mturk, question_id_sequence, sequential_number) VALUES ('$user_mTurk_code', '$new_question_order', 0)");
+                $result = exec_sql_query($myPDO, "INSERT INTO user (mturk, question_id_sequence, sequential_number) VALUES ('$user_mTurk_code', '$new_question_order', 1)");
                 $session = uniqid();
                 // ($session);
                 $records = exec_sql_query($myPDO, "UPDATE user SET session = '". $session. "' WHERE  user.mturk = '". $current_user. "'")->fetch(PDO::FETCH_ASSOC);

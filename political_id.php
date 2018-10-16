@@ -31,11 +31,8 @@
 
   <div class="wrapper">
 
-      <?php
-      if ( $current_user_world_id == 1 ){
-      echo'
       <div class="form">
-      <form action="practice_question.php" method="post">
+      <form action="game_start.php" method="post">
       <label>Which of the two main political parties in the U.S. are you more likely to support?</label>
       <select name="political_stand" required>
         <option value="" disabled selected>Select your preference</option>
@@ -47,25 +44,7 @@
       </select>
       <button name="party_id_continue" type="submit" value="party_id_continue">Continue</button>
       </form>
-      ';
-       }else{
-      echo'
-      <div class="form">
-      <form action="practice_question.php" method="post">
-      <label>Which of the two main political parties in the U.S. are you more likely to support?</label>
-      <select name="political_stand" required>
-        <option value="" disabled selected>Select your preference</option>
-        <option value="strong Democrats">I strongly support the Democratic Party</option>
-        <option value="Democrats">I support the Democratic Party</option>
-        <option value="neither">Independent/neither</option>
-        <option value="Republicans">I support the Republican Party</option>
-        <option value="strong Republicans">I strongly support the Republican Party</option>
-      </select>
-      <button name="party_id_continue" type="submit" value="party_id_continue">Continue</button>
-      </form>
-      ';
-       }
-      ?>
+
 
     </div>
   </div>
