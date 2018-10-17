@@ -43,7 +43,7 @@ if($num_of_users <= 1 || $current_user_world_id == 1 || ((($support_num_of_demo_
 		array("label"=> null, "y"=> null),
 		array("label"=> null, "y"=> null, "x"=>null)
 	);
-}else if ($id_carrier == 23){
+}else if ($id_carrier == 21){
 
 	$dataPoints1 = array(
 		array("label"=> "Democrats: 12% Agree", "y"=> 12, "z"=>$support_num_of_demo_percent),
@@ -63,7 +63,7 @@ if($num_of_users <= 1 || $current_user_world_id == 1 || ((($support_num_of_demo_
 		array("label"=> "Democrats: 12% Agree", "y"=> null),
 		array("label"=> "Republicans: 91% Agree", "y"=> 9, "z"=>$oppose_num_of_repub_percent)
 	);
-}else if($id_carrier == 24){
+}else if($id_carrier == 22){
 
 	$dataPoints1 = array(
 		array("label"=> "Democrats: 91% Agree", "y"=> 91, "z"=>$support_num_of_demo_percent),
@@ -229,8 +229,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			name: "Democrats Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 15,
-			indexLabelFontColor: "black",
+			indexLabelFontSize: 12,
+			indexLabelFontColor: "white",
 			// showInLegend: true,
 			dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
 		},{
@@ -241,25 +241,25 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			// showInLegend: true,
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 15,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 		},{
-			color: "rgb(191, 40, 0)",
+			color: "rgb(221, 12, 12)",
 			type: "stackedColumn100",
 			name: "Republicans Who Support",
 			indexLabel: "{y}% Agree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 15,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 		},{
-			color: "#FFCCBB",
+			color: "rgb(255, 144, 144)",
 			type: "stackedColumn100",
 			name: "Republicans Who Oppose",
 			indexLabel: "{y}% Disagree",
 			indexLabelFontWeight: "bold",
-			indexLabelFontSize: 15,
+			indexLabelFontSize: 12,
 			indexLabelFontColor: "black",
 			dataPoints: <?php echo json_encode($dataPoints4, JSON_NUMERIC_CHECK); ?>
 		}
@@ -316,8 +316,10 @@ if($id_carrier == 24 || $id_carrier == 23){
     <p class="question_text initially_show">
       Please take a few moments to read the statement carefully and think about your response.
     </p>
+    <p class="question_text initially_hide">You may now answer the question.</p>
+
     <p class="question_text initially_hide">
-      As a <?php echo "$user_political_id" ?>, do you agree or disagree with this statment?
+      As a <?php echo "$user_political_id" ?>, do you agree or disagree with this statement?
     </p>
     <br/><br/>
 
@@ -348,7 +350,7 @@ var USER_END_TIME = -1;
 $(document).ready(function() {
     USER_START_TIME = performance.now();
     console.log('\n\n\n\n\n\n\n\n\n\n============================\n NEW PAGE\n============================');
-    setTimeout(fadeNextQuestion, 3000, $('.initially_hide'), $('.initially_show'));
+    setTimeout(fadeNextQuestion, 6000, $('.initially_hide'), $('.initially_show'));
 });
 
 // Listens for submit event only once.

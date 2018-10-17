@@ -1,6 +1,6 @@
-<?php include('test2.php');
+<!-- <?php include('test2.php');
  // include('includes/header.php');
-?>
+?> -->
 <!DOCTYPE html>
 <html>
 

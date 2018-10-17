@@ -23,4 +23,5 @@ if (isset($_POST['sql'])) {
 // $a = random_question_order_generator();
 // var_dump($a);
 
+random_question_order_generator()
 ?>

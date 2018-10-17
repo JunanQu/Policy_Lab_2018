@@ -43,16 +43,13 @@
      */
     function random_question_order_generator(){
       $array = [];
-
       while( count($array) < 20 ){
         $rand = mt_rand(1,20);
         $array[$rand] = $rand;
       }
-      // $random_PQ = rand(23,24);
-      // $res = array_splice($array,0,0,$random_PQ);
-      array_splice($array,5,5,21);
-      array_splice($array,16,16,22);
-      // array_push($array, 25);
+
+      array_splice($array,5,0,21);
+      array_splice($array,16,0,22);
 
       return $array;
     }
@@ -374,11 +371,8 @@
       }
       $records2 = exec_sql_query($myPDO, "SELECT question_id FROM user_question_world_answer  WHERE user_id='". $current_user. "'")->fetchAll();
       $current_seq_by_count = COUNT($records2)+1;
-
-      if($id_carrier == 25 || $current_seq_by_count >= 23){
+      // var_dump($current_seq_by_count);
+      if($current_seq_by_count >= 23){
         header('Location: thanks.php');
       }
-      var_dump($records2);
-      var_dump($current_seq_by_count);
-
 ?>
