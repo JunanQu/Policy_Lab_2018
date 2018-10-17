@@ -33,7 +33,7 @@
       </p>
       <p>
         <input type="checkbox" class="item">
-        You will see 20 statements about various political and cultural
+        You will see 22 statements about various political and cultural
         beliefs (plus a practice question that does not count).
       </p>
 

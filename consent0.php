@@ -56,7 +56,7 @@ function enableButton() {
         </p>
 
          <p>
-           If you agree to take part in this study, we will ask you to indicate whether you agree or disagree with 20 statements.
+           If you agree to take part in this study, we will ask you to indicate whether you agree or disagree with 22 statements.
            This should take less than 10 minutes, for which you will be paid $2.00.
          </p>
          <p>
