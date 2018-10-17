@@ -344,11 +344,12 @@ let WAS_SUBMITTED = false;
 let CAN_SUBMIT = false;
 var USER_START_TIME = -1;
 var USER_END_TIME = -1;
+const QUESTION_FADE_TIME = 7; // Number of seconds it should take for Q to appear.
 
 $(document).ready(function() {
     USER_START_TIME = performance.now();
     console.log('\n\n\n\n\n\n\n\n\n\n============================\n NEW PAGE\n============================');
-    setTimeout(fadeNextQuestion, 3000, $('.initially_hide'), $('.initially_show'));
+    setTimeout(fadeNextQuestion, QUESTION_FADE_TIME*1000, $('.initially_hide'), $('.initially_show'));
 });
 
 // Listens for submit event only once.
